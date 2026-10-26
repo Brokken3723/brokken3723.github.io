@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 205" role="img" aria-labelledby="title desc">
+  <title id="title">ZM</title>
+  <desc id="desc">An initial-based placeholder for a future portrait.</desc>
+  <style>
+    .paper { fill: #dde7f2; }
+    .wash { fill: #d2dfed; }
+    .line { fill: none; stroke: #9db5d0; stroke-width: .7; }
+    .letters { fill: #31577e; }
+    @media (prefers-color-scheme: dark) {
+      .paper { fill: #243a53; }
+      .wash { fill: #2c4561; }
+      .line { stroke: #5e83aa; }
+      .letters { fill: #c9def5; }
+    }
+  </style>
+  <path class="paper" d="M0 0h164v205H0z"/>
+  <path class="wash" d="M0 145 164 95v110H0z"/>
+  <circle class="line" cx="111" cy="52" r="32"/>
+  <path class="line" d="M17 18h22M17 18v22M147 187h-22M147 187v-22"/>
+  <text class="letters" x="81" y="119" text-anchor="middle" font-family="Georgia,serif" font-size="39" font-weight="400" letter-spacing="-2">ZM</text>
+</svg>

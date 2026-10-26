@@ -1,0 +1,719 @@
+{
+  "languageLabel": "中文",
+  "localeLabel": "中文",
+  "meta": {
+    "description": "马致远，上海交通大学研究助理，研究兴趣为计算神经科学与神经动力学。"
+  },
+  "nav": {
+    "about": "关于我",
+    "research": "研究",
+    "sharing": "分享"
+  },
+  "profile": {
+    "name": "马致远",
+    "role": "研究助理",
+    "institution": "上海交通大学",
+    "emailLabel": "邮箱",
+    "cvLabel": "简历",
+    "portraitLabel": "个人照片待补充"
+  },
+  "ui": {
+    "skipToContent": "跳至正文",
+    "primaryNavigation": "主导航",
+    "languageNavigation": "语言",
+    "footer": "© 2026 马致远",
+    "comingSoon": "待补充",
+    "backToTop": "返回顶部",
+    "legacyRedirect": "前往分享"
+  },
+  "about": {
+    "title": "关于我",
+    "researchInterests": "研究兴趣",
+    "interests": [
+      "计算神经科学",
+      "神经动力学"
+    ],
+    "education": "教育背景",
+    "school": "上海交通大学致远学院",
+    "degree": "物理学学士",
+    "year": "2026",
+    "moreResearch": "查看研究"
+  },
+  "research": {
+    "title": "研究",
+    "intro": "结合计算建模与神经活动数据分析，研究神经动力学以及学习与记忆。",
+    "projectsTitle": "研究项目",
+    "projects": [
+      {
+        "id": "tfc",
+        "thumbnail": {
+          "src": "assets/research/tfc-v2.png",
+          "alt": "小鼠痕迹恐惧条件化示意：条件刺激、痕迹间隔、非条件刺激，以及 EC、CA1 和下托模型模块。",
+          "width": 1672,
+          "height": 941
+        },
+        "title": "痕迹恐惧条件化中时间关联学习的神经回路建模",
+        "period": "2026年8月至今",
+        "metadata": [
+          "研究助理；导师：周栋焯教授，上海交通大学。"
+        ],
+        "bullets": [
+          "综合行为、神经记录与神经回路干预研究的发现，建立连接刺激响应、学习依赖表征与干预效应的验证框架。",
+          "使用 Python 构建了 GPU 加速的内嗅皮层、CA1 和下托兴奋性—抑制性循环速率网络模型，纳入慢刺激响应与基于资格迹的突触可塑性。",
+          "定性复现线索响应与痕迹期响应活动模式；使用线性 SVM 从模拟 CA1 活动中解码训练历史，并评估学习与提取期间神经回路干预的影响。"
+        ],
+        "body": [],
+        "figures": []
+      },
+      {
+        "id": "dunnart",
+        "thumbnail": {
+          "src": "assets/research/dunnart-v2.png",
+          "alt": "皮层细胞视野中的局部活动斑块与传播活动带的对比示意图。",
+          "width": 1672,
+          "height": 941
+        },
+        "title": "发育中袋鼩皮层自发神经活动的计算分析与建模",
+        "period": "2025年9月至2026年6月",
+        "metadata": [
+          "本科毕业论文 | 上海交通大学与 WashU Medicine",
+          "导师：周栋焯教授、Geoffrey Goodhill 教授；合作者：Linda Richards 教授。"
+        ],
+        "bullets": [
+          "开发单神经元 GCaMP8m 钙成像的 Python 分析流程，结合 CaImAn 预处理、六角晶格映射和三维广度优先搜索，检测分裂、合并及传播事件。",
+          "在单次记录内识别出共存的斑块状和波状事件；主成分分析（PCA）提示活动具有高维、分布式特征。这些描述性发现细化了此前对特定脑区的认识。",
+          "建立受视网膜波启发的网络模型，定性复现不同耦合强度下的局部和广域爆发活动。虚拟钙成像提示，荧光衰减、阈值和噪声可部分解释活动长尾和相邻单元激活的不对称性。"
+        ],
+        "body": [],
+        "figures": [],
+        "story": {
+          "intro": "围绕发育中袋鼩皮层的自发性活动，我完成了单神经元分辨率钙成像数据的事件提取，并构建神经网络模型，探索活动如何起始、传播，以及在事件之后恢复。",
+          "contentsLabel": "本页内容",
+          "creditsTitle": "数据与素材来源",
+          "sections": [
+            {
+              "id": "background",
+              "title": "课题简介",
+              "eyebrow": "早期脑发育中的自发性活动",
+              "layout": "pair",
+              "paragraphs": [
+                "在成熟的感觉输入形成之前，发育中的神经网络就已能产生具有时空结构的活动。这些不依赖当前外界刺激的自发性活动，可表现为细胞群局部同时活跃，或活动依次向邻近区域传播，并被认为参与早期感觉地图与神经回路的塑造。[1][3]",
+                "本项目以脂尾袋鼩（Sminthopsis crassicaudata）为对象。袋鼩的大量皮层发育发生在出生后，为观察哺乳动物早期神经活动提供了窗口。[2]项目使用 GCaMP8m 双光子钙成像的单神经元分辨率记录，原始数据是一段荧光随时间变化的影片。"
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "src": "assets/dunnart/dunnart-development.png",
+                  "width": 1021,
+                  "height": 662,
+                  "title": "为什么研究袋鼩？",
+                  "alt": "脂尾袋鼩出生后不同发育阶段的照片序列。",
+                  "caption": "袋鼩出生时高度未成熟，许多皮层发育过程在出生后继续进行。图源：Suárez et al. (2017)。[2]"
+                },
+                {
+                  "type": "video",
+                  "src": "assets/dunnart/developmental-activity.mp4",
+                  "poster": "assets/dunnart/developmental-activity-poster.jpg",
+                  "width": 400,
+                  "height": 288,
+                  "title": "自发性活动是什么样的？",
+                  "alt": "发育期袋鼩皮层自发性活动的钙成像文献视频。",
+                  "caption": "发育期皮层钙成像的文献示例，展示自发性活动的出现与消退。来源：Suárez et al. (2023)。[3]"
+                }
+              ]
+            },
+            {
+              "id": "processing",
+              "title": "数据处理",
+              "eyebrow": "从荧光影片到可追踪的活动事件",
+              "layout": "pair",
+              "paragraphs": [
+                "不均匀的细胞分布、模糊的波前，以及活动的分裂和合并，使直接按传播方向追踪事件变得困难。我建立了一套从原始影片到单细胞活动与时空事件的处理流程，让检测输出能够与记录逐帧对照。"
+              ],
+              "points": [
+                {
+                  "title": "单细胞信号提取",
+                  "text": "使用 CaImAn 完成运动校正、神经元空间成分识别与荧光轨迹提取。[4] 随后把钙信号转换为逐帧的活动状态。"
+                },
+                {
+                  "title": "六角晶格映射",
+                  "text": "将不规则分布的神经元映射到规则六角晶格，保留大致空间组织，并建立统一的局部邻接关系。"
+                },
+                {
+                  "title": "时空事件检测",
+                  "text": "在二维空间与时间构成的图中，用广度优先搜索（BFS）识别连通组件，统一表示局部斑块、传播、分裂与合并。"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "src": "assets/dunnart/neuron-identification.jpeg",
+                  "width": 955,
+                  "height": 955,
+                  "title": "神经元识别结果",
+                  "alt": "CaImAn 识别的神经元空间成分，黄色轮廓叠加在钙成像视野上。",
+                  "caption": "黄色轮廓标出识别出的神经元空间成分，为后续的位置映射和活动事件提取提供细胞级表示。"
+                },
+                {
+                  "type": "image",
+                  "src": "assets/dunnart/hexagonal-mapping.png",
+                  "width": 1820,
+                  "height": 864,
+                  "title": "神经元位置与六角晶格映射",
+                  "alt": "原始视野中的神经元位置，以及映射后的六角晶格位置。",
+                  "caption": "左为原视野中的神经元位置，右为六角晶格中的对应位置。颜色标记不同空间分区，用于查看映射前后的对应关系。"
+                },
+                {
+                  "type": "video",
+                  "src": "assets/dunnart/processing-events.mp4",
+                  "poster": "assets/dunnart/processing-events-poster.jpg",
+                  "width": 1440,
+                  "height": 600,
+                  "title": "原始记录与处理输出",
+                  "alt": "原始荧光记录与处理后的细胞活动和事件表示并列播放。",
+                  "caption": "同一段记录的三种表示并列播放，便于观察荧光变化如何对应到单细胞活动与提取出的事件。",
+                  "span": "wide",
+                  "panels": [
+                    {
+                      "title": "左：原始数据",
+                      "text": "原始钙成像记录，以荧光的亮度变化呈现视野中的细胞活动。"
+                    },
+                    {
+                      "title": "中：提取出的神经活动事件",
+                      "text": "显示时空相连的活动及其参与细胞，用于观察事件的出现、传播、分裂与合并。"
+                    },
+                    {
+                      "title": "右：二值化神经信号",
+                      "text": "以活动或静息状态表示单细胞信号，显示当前帧中哪些细胞被判定为活跃。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "modeling",
+              "title": "模拟工作：双不应期机制",
+              "eyebrow": "自发起始、局部传播与事件后的恢复",
+              "layout": "pair",
+              "paragraphs": [
+                "我借鉴视网膜波模型，在具有局部兴奋耦合的网络中加入内源噪声、信号放大和活动依赖的恢复过程。[5]信号放大使短暂输入有机会触发更持久的活动，进而招募邻近细胞。",
+                "双不应期机制指两个耦合时间尺度的恢复过程。较快的过程直接降低细胞兴奋性；较慢的过程积累强活动的影响，并延缓兴奋性的恢复。因此，恢复需要多久，会随刚才活动的强度与持续时间而改变。[5]",
+                "这一机制让弱随机活动后仍有机会较快产生新的活动起点，同时在持续的网络活动之后留下更长的恢复窗口，帮助避免持续的大范围爆发。我在规则网络与实验神经元位置映射得到的网络上，检验这些机制能否产生定性相似的活动形式。"
+              ],
+              "points": [
+                {
+                  "title": "弱、短的活动",
+                  "text": "短暂噪声触发的激活对慢恢复过程影响较小，细胞可较快恢复，为后续自发活动保留起点。"
+                },
+                {
+                  "title": "强、持续的活动",
+                  "text": "持续的钙升高积累慢恢复过程，维持低兴奋性状态，降低较大事件后同一批细胞立即再次激活的可能性。"
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "src": "assets/dunnart/propagation-and-refractoriness.png",
+                  "width": 1119,
+                  "height": 760,
+                  "title": "局部传播与不应状态",
+                  "alt": "自发激活招募邻近细胞并传播，处于不应状态的细胞以 X 标记。",
+                  "caption": "局部自发激活可招募邻近细胞并继续传播，处于不应状态的细胞暂时无法再次参与。示意图据 Gjorgjieva & Eglen (2011)。[6]"
+                },
+                {
+                  "type": "image",
+                  "src": "assets/dunnart/signal-amplification-io.png",
+                  "width": 1036,
+                  "height": 1091,
+                  "title": "信号放大的输入与输出",
+                  "alt": "非线性输入输出关系示意图，包含衰减、放大与饱和区间。",
+                  "caption": "中等输入可被放大，较弱输入受到衰减，较强输入逐渐趋于饱和。这种非线性响应为局部信号招募更多细胞提供了可能。"
+                },
+                {
+                  "type": "video",
+                  "src": "assets/dunnart/simulation-comparison.mp4",
+                  "poster": "assets/dunnart/simulation-comparison-poster.jpg",
+                  "width": 1280,
+                  "height": 720,
+                  "title": "两种空间配置中的网络模拟",
+                  "alt": "规则网络与由真实神经元位置映射得到的网络模拟片段。",
+                  "caption": "视频先展示规则排列网络，再展示由实验神经元位置映射得到的网络。填色表示胞内钙浓度，黄色轮廓标记超过活动阈值的细胞；右侧面板同步显示活动量与恢复变量。",
+                  "span": "wide"
+                }
+              ]
+            }
+          ],
+          "credits": [
+            "实验记录由华盛顿大学医学院 Richards 实验室的 Suranjana Pal 博士采集并提供。计算处理与建模由马致远完成，导师为周栋焯教授和 Geoffrey Goodhill 教授。",
+            "袋鼩发育照片和背景视频分别引自 Suárez et al. (2017)[2] 与 Suárez et al. (2023)[3]，活动传播示意图据 Gjorgjieva & Eglen (2011)[6]。网络模型借鉴 Hennig et al. (2009)[5] 的视网膜波建模思路。"
+          ],
+          "references": [
+            {
+              "label": "Blankenship & Feller (2010)",
+              "title": "Mechanisms underlying spontaneous patterned activity in developing neural circuits",
+              "url": "https://doi.org/10.1038/nrn2759"
+            },
+            {
+              "label": "Suárez et al. (2017)",
+              "title": "Development of body, head and brain features in the Australian fat-tailed dunnart (Sminthopsis crassicaudata; Marsupialia: Dasyuridae); A postnatal model of forebrain formation",
+              "url": "https://doi.org/10.1371/journal.pone.0184450"
+            },
+            {
+              "label": "Suárez et al. (2023)",
+              "title": "Cortical activity emerges in region-specific patterns during early brain development",
+              "url": "https://doi.org/10.1073/pnas.2208654120"
+            },
+            {
+              "label": "Giovannucci et al. (2019)",
+              "title": "CaImAn an open source tool for scalable calcium imaging data analysis",
+              "url": "https://doi.org/10.7554/eLife.38173"
+            },
+            {
+              "label": "Hennig et al. (2009)",
+              "title": "Early-Stage Waves in the Retinal Network Emerge Close to a Critical State Transition between Local and Global Functional Connectivity",
+              "url": "https://doi.org/10.1523/JNEUROSCI.4880-08.2009"
+            },
+            {
+              "label": "Gjorgjieva & Eglen (2011)",
+              "title": "Modeling developmental patterns of spontaneous activity",
+              "url": "https://doi.org/10.1016/j.conb.2011.05.015"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cortical",
+        "thumbnail": {
+          "src": "assets/research/cortical-v2.png",
+          "alt": "皮层俯视示意图，展示脑区分区、节点和跨区域网络连接。",
+          "width": 1672,
+          "height": 941
+        },
+        "title": "大尺度皮层网络动力学的建模与模拟",
+        "period": "2024年9月至2026年9月",
+        "metadata": [
+          "研究助理；导师：周栋焯教授，上海交通大学。"
+        ],
+        "bullets": [
+          "使用 Python 开发了 GPU 加速的全脑动态均值场模型，纳入 68 个皮层区域的异质性；通过 Levenberg–Marquardt 优化拟合 138 个参数，在验证集上实现 0.74 的功能连接相关系数。",
+          "在三个工作点观察到 Gauss–Newton 特征值谱的近似幂律标度，并沿全部 138 个特征模态进行系统扰动，验证相应的敏感性层级。",
+          "表明在各工作点，主导敏感性模态在独立随机种子组之间具有稳健性，而高阶模态的可重复性较低；将选定的主导模态与皮层图谱进行比较，以探索其生物学相关性。"
+        ],
+        "body": [],
+        "figures": [],
+        "story": {
+          "intro": "受最优化与参数多样性可以共存的理论启发，我研究大尺度皮层网络模型中不同参数组合的重要性：是否只有少数线性组合主导功能连接变化，以及这些重要组合有何潜在的生物学意义。",
+          "contentsLabel": "本页内容",
+          "references": [
+            {
+              "label": "Deco et al. (2013)",
+              "title": "Resting-State Functional Connectivity Emerges from Structurally and Dynamically Shaped Slow Linear Fluctuations",
+              "url": "https://doi.org/10.1523/JNEUROSCI.1091-13.2013"
+            },
+            {
+              "label": "Deco et al. (2014)",
+              "title": "How Local Excitation–Inhibition Ratio Impacts the Whole Brain Dynamics",
+              "url": "https://doi.org/10.1523/JNEUROSCI.5068-13.2014"
+            },
+            {
+              "label": "Deco et al. (2021)",
+              "title": "Dynamical consequences of regional heterogeneity in the brain’s transcriptional landscape",
+              "url": "https://doi.org/10.1126/sciadv.abf4752"
+            },
+            {
+              "label": "Kong et al. (2021)",
+              "title": "Sensory-motor cortices shape functional connectivity dynamics in the human brain",
+              "url": "https://doi.org/10.1038/s41467-021-26704-y"
+            },
+            {
+              "label": "Wang et al. (2019)",
+              "title": "Inversion of a large-scale circuit model reveals a cortical hierarchy in the dynamic resting human brain",
+              "url": "https://doi.org/10.1126/sciadv.aat7854"
+            },
+            {
+              "label": "Ziaeemehr et al. (2025)",
+              "title": "Virtual Brain Inference (VBI), a flexible and integrative toolkit for efficient probabilistic inference on whole-brain models",
+              "url": "https://elifesciences.org/articles/106194"
+            },
+            {
+              "label": "Bauer et al. (2025) · preprint",
+              "title": "Optimization and variability can coexist",
+              "url": "https://arxiv.org/abs/2505.23398"
+            }
+          ],
+          "sections": [
+            {
+              "id": "cortical-background",
+              "title": "研究背景与问题",
+              "layout": "wide",
+              "paragraphs": [
+                "Deco 等的动态平均场模型用神经元群体的平均活动代表每个脑区，并以结构连接（SC）耦合各脑区。模型先生成神经活动，再通过血流动力学模型生成 BOLD 信号；不同脑区 BOLD 时间序列的相关构成功能连接（FC），可与实测 FC 比较。[1]",
+                "参数的设定决定了模型能表达哪些差异。Deco 等通过局部反馈抑制调节兴奋—抑制平衡；后续研究又用髓鞘或基因表达图谱约束区域增益，或用髓鞘与首个 FC 梯度构造低维的区域参数化。它们引入了脑区异质性，同时保留较少的优化变量。[2][3][4]",
+                "另一条路线是进一步释放区域自由度。Wang 等让 68 个脑区的回返连接和外部输入独立变化，连同全局参数形成 138 维反演问题。Ziaeemehr 等的 VBI 则在选定的参数化空间内近似联合后验，用来描述不确定性与参数依赖；其 pDMF 示例由九个空间系数与全局耦合 G 构成 10 维推断空间。[5][6]",
+                "生物系统往往包含大量参数，但这些参数是否需要被同等精确地调节？Bauer、Bialek 等提出，最优化与参数多样性可以共存：在众多参数的线性组合中，少数组合对性能影响很大，其他许多组合的影响则较小。因此，参数配置可以存在显著差异，同时维持接近最优的功能表现。[7]",
+                "这种重要性的差异可以由性能函数在最优点附近的 Hessian 描述：特征向量对应参数的线性组合，特征值衡量沿这些组合偏移时性能变化的强弱。该研究在生物系统及相关模型中发现，特征值跨越多个数量级，支持了“少数敏感组合、许多较不敏感组合”的图景；下图的小型节律神经回路就是其中一例。[7]",
+                "我的研究由此提出两个问题：第一，在大尺度皮层网络模型中，能否也观察到跨越多个数量级的特征值谱，说明不同参数组合的重要性相差悬殊？第二，最重要的组合由哪些脑区和参数共同构成，又有什么潜在生物学意义？为回答这些问题，我先寻找能拟合功能连接的工作点，再计算局部敏感性结构，并检验关键方向的稳定性。"
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "src": "assets/cortical/mean-field-framework.png",
+                  "width": 1134,
+                  "height": 786,
+                  "title": "结构连接、平均场动力学与功能连接",
+                  "alt": "Deco 等的全脑建模框架：结构连接输入、神经群体动力学、模拟 BOLD 与功能连接，以及实测功能连接。",
+                  "caption": "结构连接是模型输入，功能连接是经动力学与血流动力学计算得到的输出；参数优化通过比较模拟与实测 FC 来评价模型。图源：Deco et al. (2013)。[1]"
+                },
+                {
+                  "type": "image",
+                  "src": "assets/cortical/optimization-and-variability.png",
+                  "width": 1177,
+                  "height": 382,
+                  "title": "理论启发：最优化与参数多样性为何能共存",
+                  "alt": "小型节律神经回路、三个细胞群的电压节律，以及周期和占空比性能对应的 Hessian 特征值谱。",
+                  "caption": "左、中展示蟹的节律神经回路及模型电压；右侧比较以周期或占空比为性能指标时的特征值谱。谱跨越多个数量级，表明不同离子通道参数组合对性能的影响强弱悬殊。图源：Bauer, Bialek et al. (2025)。[7]"
+                }
+              ]
+            },
+            {
+              "id": "cortical-working-points",
+              "title": "寻找工作点：先限制自由度，再释放区域参数",
+              "layout": "wide",
+              "paragraphs": [
+                "直接在高维参数空间搜索比较困难，因此我先在两个受限家族中寻找可用起点：4 参数的均一家族，以及 10 参数的异质家族。这里的 4 和 10 是优化变量的个数，模型始终包含 68 个脑区。实际先得到异质工作点 β，再将其均一化投影并局部精炼得到 α。",
+                "随后将 α、β 展开到同一物理参数坐标，并用二者的逐元素中点构造 γ。围绕这三个锚点设置 8 个起点，再允许 68 个区域回返连接、68 个区域外部输入、全局耦合与噪声幅度独立调整，共 138 个优化参数。每个起点都运行阻尼 Levenberg–Marquardt（LM）优化，并用独立随机种子复核。",
+                "不同起点最终停在参数配置明显不同的位置，却得到相近的 FC 拟合。这提示模型可能存在多个局部最优候选或不同的有效工作点；目前获得的是不同优化终点，尚不能据此保证数学意义上的收敛或全局最优。"
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "src": "assets/cortical/low-dimensional-working-points.png",
+                  "width": 1880,
+                  "height": 1058,
+                  "title": "低自由度模型提供高维搜索的起点",
+                  "alt": "4 参数均一模型的 LM 轨迹，以及 10 参数异质模型的 CMA-ES 搜索轨迹。",
+                  "caption": "两类低维优化分别提供均一和异质的参数起点，随后才释放区域参数。",
+                  "readingNotes": [
+                    {
+                      "title": "如何读左右两幅曲线",
+                      "text": "左图横轴为接受的 LM 更新次数，纵轴为模拟与实测 FC 的相关，越高越好；两条线使用不同随机种子组。右图是异质家族的三次 CMA-ES 重启，横轴为代数，纵轴为迄今最好的损失 1−r，越低越好。"
+                    },
+                    {
+                      "title": "这一步的输出如何进入下一步",
+                      "text": "均一家族只调整全脑共享的回返连接、输入、耦合与噪声；异质家族用有限的空间参数化引入脑区差异。实际先搜索 β，再投影并精炼 α。这两个结果将作为 138 维优化的结构化起点，而不是把低维参数值直接作为最终解释。"
+                    }
+                  ]
+                },
+                {
+                  "type": "image",
+                  "src": "assets/cortical/full-parameter-optimization.png",
+                  "width": 1880,
+                  "height": 1058,
+                  "title": "释放 138 个参数后的多起点优化",
+                  "alt": "三类参数锚点、八个优化起点与对应的全参数 LM 轨迹。",
+                  "caption": "低维结果展开为全参数起点，在同一 138 维参数空间中分别优化。",
+                  "readingNotes": [
+                    {
+                      "title": "左侧是起点，右侧是优化过程",
+                      "text": "左侧列出 α、β、γ 三类锚点及其周围的 8 个起点。右图每条曲线对应一次运行：横轴为 LM 线性化次数，纵轴为决策种子组上的 FC 相关。粗线与空心点标出各家族最终选出的代表终点。"
+                    },
+                    {
+                      "title": "为什么分开使用随机种子",
+                      "text": "模型本身含噪声。同一候选在不同随机模拟中的表现会波动，因此导数估计、更新接受和独立筛选分别使用互不重叠的种子组，以降低把随机波动误当作优化改善的风险。每个家族最终冻结一个代表工作点，供后续敏感性分析。"
+                    }
+                  ]
+                },
+                {
+                  "type": "image",
+                  "src": "assets/cortical/distinct-working-points.png",
+                  "width": 1880,
+                  "height": 1058,
+                  "title": "相近的功能连接拟合，对应不同参数配置",
+                  "alt": "三个工作点的区域参数分布、参数空间距离与独立种子复核结果。",
+                  "caption": "功能表现相近，并未使三个终点的参数配置合并到同一位置。",
+                  "readingNotes": [
+                    {
+                      "title": "图中的分布与距离分别是什么",
+                      "text": "左侧箱线图汇总 68 个脑区的回返连接强度与外部输入分布。右侧三角形的边表示不同终点之间的参数空间距离，圆内记录各自相对起点的移动；这些数值不是 FC 误差，也不是脑区之间的解剖距离。"
+                    },
+                    {
+                      "title": "为什么把它们保留为不同工作点",
+                      "text": "下方表格给出 50 个新随机种子上的 FC 相关：Alpha、Gamma、Beta 分别约为 0.727、0.741 和 0.720。它们的拟合相近、参数却保持分离，因此后续需要分别计算每个点的局部敏感性，不能只挑一个参数向量就假定它代表唯一机制。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "cortical-curvature",
+              "title": "Hessian 谱、稳定性与生物解释的限制",
+              "layout": "wide",
+              "paragraphs": [
+                "优化阶段调整 138 个参数以提高拟合；到这一步，工作点被固定，不再重新拟合。我计算模型自身 FC 对微小参数变化的局部响应 J，再以 H = JᵀJ 构成 Gauss–Newton 敏感性矩阵。这里的 Hessian 分析指这一局部近似，衡量哪些参数组合会改变当前模拟 FC，而非整个经验拟合损失的精确 Hessian。",
+                "03-1 的结果回应了研究的第一问：三个工作点的特征值都跨越约 12 个数量级，在本模型的局部 FC 响应中，确实观察到了不同参数组合的重要性相差悬殊的现象。少数方向非常敏感，大量方向的影响则弱得多。",
+                "第二问是这些重要组合的生物学意义。要解释具体组合，就需要确认它们在真实正负扰动和不同随机种子下是否可靠。主要障碍出现在这里：各工作点自己的主导方向较容易复现，高阶方向及其子空间则不稳定；方向可复现也不等于有限扰动检验一定通过。因此，谱的层级已经被观察到，但将关键组合与脑图谱或生物机制建立可靠对应仍然困难。"
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "src": "assets/cortical/spectrum-and-perturbations.png",
+                  "width": 3760,
+                  "height": 2116,
+                  "title": "谱的层级与真实扰动检验",
+                  "alt": "三个工作点的归一化 Hessian 特征值谱，以及前三个方向的有限幅度正负扰动检验。",
+                  "caption": "03-1 观察到了研究预期的敏感性层级：不同参数组合的特征值跨越多个数量级。右侧的真实扰动检验进一步限定具体方向与步长的解释范围。",
+                  "readingNotes": [
+                    {
+                      "title": "左侧：不同参数组合的影响相差多大",
+                      "text": "横轴为方向排序，纵轴为每个工作点内部归一化的特征值，两轴均为对数坐标。138 个方向跨越约 12 个数量级：相同大小的参数位移，沿不同组合可产生非常不同的局部 FC 变化。归一化谱比较的是各点内部的相对层级，不能直接比较跨点的绝对曲率。"
+                    },
+                    {
+                      "title": "右侧：局部预测能否被真实模拟重现",
+                      "text": "表格比较沿前三个方向做正负扰动后的实测曲率与 Gauss–Newton 预测。绿色表示全部检验通过，橙色表示比值合格但其他条件失败，红色表示超界。在最小幅度 0.005 下，Alpha 与 Gamma 的 mode 1 通过，Beta 的 mode 1 未通过；因此不能把陡峭谱直接等同于所有方向都可解释。"
+                    }
+                  ]
+                },
+                {
+                  "type": "image",
+                  "src": "assets/cortical/seed-and-subspace-stability.png",
+                  "width": 3760,
+                  "height": 2116,
+                  "title": "主导方向可复现，高阶方向与子空间不稳定",
+                  "alt": "独立随机种子下的特征方向绝对余弦相似度，以及高维子空间最大主角检验。",
+                  "caption": "稳定的是各工作点自身的主导方向，不是所有工作点共享一条方向，也不是整个高维敏感性结构。",
+                  "readingNotes": [
+                    {
+                      "title": "左侧：同一个方向换种子后还在不在",
+                      "text": "横轴为方向排序，纵轴为绝对余弦相似度：接近 1 表示方向一致，接近 0 表示差异很大，并排除了特征向量整体正负号的影响。Alpha、Gamma、Beta 的 mode 1 分别达到 0.977、0.956、0.952；高阶方向的复现性明显较弱。"
+                    },
+                    {
+                      "title": "右侧：是否只是同一平面中的基底旋转",
+                      "text": "子空间检验不逐一匹配向量，而比较前 K 个方向张成的空间；最大主角越小，两个空间越接近。图中高阶空间未通过稳定性要求，去掉 mode 1 后的 mode2+ 子空间也未形成稳定平面。因此，问题不能简单归因于同一个可靠子空间内部换了几根基底。"
+                    }
+                  ]
+                },
+                {
+                  "type": "image",
+                  "src": "assets/cortical/dominant-direction-components.png",
+                  "width": 3760,
+                  "height": 2116,
+                  "title": "主导方向由哪些参数与脑区共同构成",
+                  "alt": "各工作点主导方向的参数块平方载荷分解，以及 68 个脑区外部输入分量的有符号载荷。",
+                  "caption": "只有明确方向的构成及其验证范围，才可能进一步讨论生物意义。",
+                  "readingNotes": [
+                    {
+                      "title": "左侧：参数块的份额，右侧：区域分布",
+                      "text": "堆叠条把一个特征方向的平方载荷按回返连接、外部输入、全局耦合和噪声分组，表示该方向内部各类参数的份额。右图展开外部输入分量在 68 个脑区的有符号载荷；每行按自身最大绝对值着色，因而不能仅凭不同颜色深浅跨工作点比较绝对大小。"
+                    },
+                    {
+                      "title": "具体观察与解释边界",
+                      "text": "Alpha 的主导方向中，全局耦合与区域输入分别占平方载荷的 58.1% 和 41.9%，其中输入分量高度集中于左额上回；Gamma 的输入份额为 80.1%，分布于更多脑区。不同工作点的结构并不相同，而高阶结构难以稳定复现，Beta 的主导方向也未通过有限扰动检验。因此，脑图谱或生物机制的解释仍需更稳健的方向、统一比较尺度与独立验证。"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "publicationsTitle": "论文",
+    "publicationsEmpty": "也许不是今天，也许不是明天，也许不是下个月，但总有一天...",
+    "overviewTitle": "研究概述",
+    "resultsTitle": "结果与可视化",
+    "resultsEmpty": "详细结果与图表待补充。",
+    "backLabel": "返回研究",
+    "openLabel": "查看项目"
+  },
+  "sharing": {
+    "title": "分享",
+    "intro": "影像、阅读，以及其他我觉得值得分享的东西。",
+    "sections": [
+      {
+        "id": "films",
+        "title": "影像",
+        "eyebrow": "Films",
+        "description": "自己拍摄的微电影，以及创作时留下的想法。",
+        "emptyTitle": "微电影作品待补充",
+        "emptyDescription": "暂未添加影片。",
+        "body": [],
+        "figures": [],
+        "gallery": [
+          {
+            "src": "assets/films/poster-1.webp",
+            "alt": "《梦醒八九点钟》海报：蓝色天空、岩石剪影与自行车。",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "assets/films/poster-2.webp",
+            "alt": "《梦醒八九点钟》海报：公路上的自行车前轮与上下倒映的沿途风景。",
+            "width": 1200,
+            "height": 1800
+          },
+          {
+            "src": "assets/films/poster-3.webp",
+            "alt": "《梦醒八九点钟》海报：草原与远山间的旅行自行车。",
+            "width": 1800,
+            "height": 1013
+          }
+        ],
+        "film": {
+          "title": "梦醒八九点钟",
+          "subtitle": "Awakening in the Morning Sun",
+          "credit": "导演 / 编剧：马致远",
+          "trailerTitle": "预告片",
+          "aboutTitle": "创作自述",
+          "postersTitle": "海报",
+          "stillsTitle": "剧照",
+          "enlargeStillLabel": "查看剧照大图",
+          "releaseNotice": "正片将于 2027 年在哔哩哔哩（bilibili）解禁上线。",
+          "closeLabel": "关闭大图",
+          "enlargeLabel": "查看海报大图",
+          "galleryLabel": "影片图集",
+          "trailerAlt": "《梦醒八九点钟》预告片",
+          "videoFallback": "播放预告片",
+          "paragraphs": [
+            "《梦醒八九点钟》是我的第一部短片。2022 年 7 月，我沿新疆独库公路骑行，拍下了沿途的大量影像。最初，我只想把它们剪成一份旅行记录；三年后重新整理这些素材时，我开始借它们讲述另一段旅程——一代人在迷失中寻找自我、重新走向现实的过程。",
+            "影片没有演员，也没有对白。我以自行车为隐喻，尝试呈现千禧一代在西方文化话语主导下的精神困境与自我解放：从梦中的迷失，到旅途中的沉默观察，再到通过劳动实践回归现实，重新拥抱红色文化。",
+            "母校“饮水思源”的校训一直影响着我。这部影片也由此追问：我们这一代正在饮谁的水，又应该思哪个源？对我而言，它既是一次创作尝试，也是我与过去的自己、与同代人的一次影像对话。"
+          ],
+          "stills": [
+            {
+              "src": "assets/films/still-01.webp",
+              "alt": "《梦醒八九点钟》剧照：群山前的工业厂区，烟囱与火光映在阴云下。",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-02.webp",
+              "alt": "《梦醒八九点钟》剧照：碧绿河流与砾石河岸，旅人在岸边休息、在水中游泳。",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-03.webp",
+              "alt": "《梦醒八九点钟》剧照：一辆自行车躺在林边的石地与野花之间。",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-04.webp",
+              "alt": "《梦醒八九点钟》剧照：公路沿河流穿过两侧的山谷，远处可见高峰与蓝天。",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-05.webp",
+              "alt": "《梦醒八九点钟》剧照：绿色山坡间的盘山弯道，一辆旅行自行车停在路边。",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-06.webp",
+              "alt": "《梦醒八九点钟》剧照：云层下连绵的岩石山脊与绿色山坡。",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-07.webp",
+              "alt": "《梦醒八九点钟》剧照：夜色中的白色自行车与树木，画面右侧叠有《梦醒八九点钟》中英片名。",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-08.webp",
+              "alt": "《梦醒八九点钟》剧照：车内自行车的剪影与车窗外的河流、田野和远山。",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-09.webp",
+              "alt": "《梦醒八九点钟》剧照：蓝天白云下的草甸山谷、林地与层叠远山。",
+              "width": 1920,
+              "height": 1080
+            }
+          ],
+          "trailer": {
+            "src": "assets/films/awakening-trailer.mp4",
+            "poster": "assets/films/trailer-cover.jpg",
+            "width": 1920,
+            "height": 1080,
+            "alt": "《梦醒八九点钟》预告片"
+          }
+        }
+      },
+      {
+        "id": "reading",
+        "title": "阅读",
+        "eyebrow": "Reading",
+        "description": "想推荐的书与网文，还有值得写下的阅读感受。",
+        "emptyTitle": "阅读推荐待补充",
+        "emptyDescription": "暂未添加书目与推荐。",
+        "body": [],
+        "figures": [],
+        "gallery": [],
+        "books": [
+          {
+            "id": "stormwind",
+            "title": "暴风城打工实录",
+            "recommendationFile": "暴风城打工实录.md",
+            "cover": {
+              "src": "assets/reading/stormwind.webp",
+              "alt": "《暴风城打工实录》封面：铠甲、长剑与蓝金盾牌前的书名。",
+              "width": 192,
+              "height": 262
+            }
+          },
+          {
+            "id": "red-dawn",
+            "title": "赤色黎明",
+            "recommendationFile": "赤色黎明.md",
+            "cover": {
+              "src": "assets/reading/red-dawn.webp",
+              "alt": "《赤色黎明》封面：红色书名、剪影与浅色底纹。",
+              "width": 189,
+              "height": 252
+            }
+          },
+          {
+            "id": "industrial-cthulhu",
+            "title": "工业克苏鲁不相信魔法",
+            "recommendationFile": "工业克苏鲁不相信魔法.md",
+            "cover": {
+              "src": "assets/reading/industrial-cthulhu.webp",
+              "alt": "《工业克苏鲁不相信魔法》封面：黑色书名与雪山上空的飞行器。",
+              "width": 1191,
+              "height": 1588
+            }
+          },
+          {
+            "id": "sword-of-dawnbreaker",
+            "title": "黎明之剑",
+            "recommendationFile": "黎明之剑.md",
+            "cover": {
+              "src": "assets/reading/sword-of-dawnbreaker.webp",
+              "alt": "《黎明之剑》封面：人物、长剑与中英文书名。",
+              "width": 387,
+              "height": 516
+            }
+          }
+        ]
+      },
+      {
+        "id": "moments",
+        "title": "日常",
+        "eyebrow": "Moments",
+        "description": "一些日常、共同度过的时光，以及在意的人。",
+        "emptyTitle": "生活记录待补充",
+        "emptyDescription": "暂未添加照片与记录。",
+        "body": [],
+        "figures": [],
+        "gallery": []
+      }
+    ],
+    "contentTitle": "分享内容",
+    "backLabel": "返回分享",
+    "openLabel": "查看详情"
+  }
+}

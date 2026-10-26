@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="{{htmlLang}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="{{description}}">
+  <meta name="theme-color" content="#f7f9fc" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#2c3543" media="(prefers-color-scheme: dark)">
+  <title>{{pageTitle}}</title>
+  <link rel="icon" href="{{assetRoot}}/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="{{assetRoot}}/fonts/dm-sans-regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="{{assetRoot}}/fonts/newsreader-regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="{{assetRoot}}/styles.css">
+  <script src="{{assetRoot}}/app.js" defer></script>
+</head>
+<body id="top" data-language="{{language}}" data-page="{{page}}" data-view="{{view}}" data-site-root="{{rootPrefix}}" data-entry="{{isEntry}}" data-default-language="{{defaultLanguage}}">
+  <a class="skip-link" href="#main-content">{{skipToContent}}</a>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="wordmark" href="{{aboutHref}}" aria-label="{{profileName}} — {{aboutLabel}}">ZM<span aria-hidden="true">.</span></a>
+      <nav class="main-nav" aria-label="{{primaryNavigation}}">{{mainNavigation}}</nav>
+      <nav class="language-nav" aria-label="{{languageNavigation}}">{{languageNavigationLinks}}</nav>
+    </header>
+    <div class="{{layoutClass}}">
+      {{profileSidebar}}
+      <main id="main-content" class="main-content">{{pageContent}}</main>
+    </div>
+    <footer class="site-footer">
+      <p>{{footer}}</p>
+      <p>{{footerNavigation}}</p>
+    </footer>
+  </div>
+</body>
+</html>

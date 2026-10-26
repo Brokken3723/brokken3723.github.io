@@ -1,0 +1,30 @@
+# Publish only the website source and its required About manuscript.
+# Everything else in the personal project stays local by default.
+/*
+!/.gitignore
+!/.github/
+/.github/*
+!/.github/workflows/
+/.github/workflows/*
+!/.github/workflows/pages.yml
+!/01_About_Me_中英文草稿.md
+!/website/
+
+/website/*
+!/website/package.json
+!/website/site.config.json
+!/website/scripts/
+/website/scripts/*
+!/website/scripts/build.mjs
+!/website/scripts/serve.mjs
+!/website/src/
+!/website/public/
+
+# Never publish temporary files hidden inside the included content folders.
+**/.DS_Store
+**/Thumbs.db
+**/*.log
+**/*~
+**/*.tmp
+**/node_modules/
+**/.preview/

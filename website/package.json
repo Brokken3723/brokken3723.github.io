@@ -1,0 +1,13 @@
+{
+  "name": "zhiyuan-ma-personal-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A bilingual personal website for research and life.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/serve.mjs",
+    "preview": "node scripts/serve.mjs --no-build"
+  },
+  "engines": { "node": ">=20" }
+}

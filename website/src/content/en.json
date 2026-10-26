@@ -1,0 +1,719 @@
+{
+  "languageLabel": "English",
+  "localeLabel": "EN",
+  "meta": {
+    "description": "Zhiyuan Ma is a research assistant at Shanghai Jiao Tong University, interested in computational neuroscience and neural dynamics."
+  },
+  "nav": {
+    "about": "About",
+    "research": "Research",
+    "sharing": "Sharing"
+  },
+  "profile": {
+    "name": "Zhiyuan Ma",
+    "role": "Research Assistant",
+    "institution": "Shanghai Jiao Tong University",
+    "emailLabel": "Email",
+    "cvLabel": "CV",
+    "portraitLabel": "Portrait to be added"
+  },
+  "ui": {
+    "skipToContent": "Skip to content",
+    "primaryNavigation": "Main navigation",
+    "languageNavigation": "Language",
+    "footer": "© 2026 Zhiyuan Ma",
+    "comingSoon": "More to come",
+    "backToTop": "Back to top",
+    "legacyRedirect": "Go to Sharing"
+  },
+  "about": {
+    "title": "About me",
+    "researchInterests": "Research interests",
+    "interests": [
+      "Computational Neuroscience",
+      "Neural Dynamics"
+    ],
+    "education": "Education",
+    "school": "Zhiyuan College, Shanghai Jiao Tong University",
+    "degree": "BSc in Physics",
+    "year": "2026",
+    "moreResearch": "View research"
+  },
+  "research": {
+    "title": "Research",
+    "intro": "Computational models and neural activity analysis to understand neural dynamics, learning, and memory.",
+    "projectsTitle": "Research projects",
+    "projects": [
+      {
+        "id": "tfc",
+        "thumbnail": {
+          "src": "assets/research/tfc-v2.png",
+          "alt": "Schematic of mouse trace fear conditioning with CS, trace interval, US, and EC, CA1 and subiculum model components.",
+          "width": 1672,
+          "height": 941
+        },
+        "title": "Circuit Modeling of Temporal Association Learning in Trace Fear Conditioning",
+        "period": "Aug 2026 – Present",
+        "metadata": [
+          "Research Assistant, Supervisor: Prof. Douglas Zhou, Shanghai Jiao Tong University"
+        ],
+        "bullets": [
+          "Synthesized behavioral, neural-recording, and circuit-perturbation findings into a validation framework linking stimulus responses, learning-dependent representations, and intervention effects.",
+          "Developed a GPU-accelerated excitatory–inhibitory recurrent rate model of entorhinal cortex, CA1, and subiculum in Python, incorporating slow stimulus responses and eligibility-trace-based synaptic plasticity.",
+          "Qualitatively reproduced cue- and trace-responsive activity patterns; decoded training history from simulated CA1 activity using linear SVMs and evaluated the effects of circuit perturbations during learning and retrieval."
+        ],
+        "body": [],
+        "figures": []
+      },
+      {
+        "id": "dunnart",
+        "thumbnail": {
+          "src": "assets/research/dunnart-v2.png",
+          "alt": "Schematic comparison of a localized active-cell patch and a propagating activity band in cortical cell fields.",
+          "width": 1672,
+          "height": 941
+        },
+        "title": "Computational analysis and modeling of spontaneous neural activity in the developing dunnart cortex",
+        "period": "Sep 2025 – Jun 2026",
+        "metadata": [
+          "Undergraduate Thesis | Shanghai Jiao Tong University & WashU Medicine",
+          "Supervisors: Prof. Douglas Zhou and Prof. Geoffrey Goodhill; Collaborator: Prof. Linda Richards"
+        ],
+        "bullets": [
+          "Developed a Python pipeline for single-neuron GCaMP8m calcium imaging, combining CaImAn preprocessing, hexagonal lattice mapping, and 3D breadth-first search to detect splitting, merging, and propagating events.",
+          "Identified coexisting patch-like and wave-like events within individual recordings; PCA indicated high-dimensional, distributed activity. These descriptive findings refined earlier region-specific accounts.",
+          "Built a retinal-wave-inspired network model that qualitatively reproduced localized and broad bursts across coupling strengths. Virtual calcium imaging suggested that fluorescence decay, thresholding, and noise partly explain long activity tails and neighbor-activation asymmetry."
+        ],
+        "body": [],
+        "figures": [],
+        "story": {
+          "intro": "I developed an event-extraction pipeline for single-neuron calcium-imaging recordings of the developing dunnart cortex, and a network model to explore how activity starts, spreads and recovers.",
+          "contentsLabel": "On this page",
+          "creditsTitle": "Data & sources",
+          "sections": [
+            {
+              "id": "background",
+              "title": "Project background",
+              "eyebrow": "Spontaneous activity in the developing cortex",
+              "layout": "pair",
+              "paragraphs": [
+                "Developing neural networks generate structured activity before mature sensory input is established. This spontaneous activity can involve groups of cells becoming active locally or activity spreading through neighboring regions, and may help shape early sensory maps and neural circuits.[1][3]",
+                "This project studies the fat-tailed dunnart (Sminthopsis crassicaudata). Much of its cortical development takes place after birth, providing access to early stages of mammalian brain development.[2] The project uses single-neuron-resolution GCaMP8m two-photon calcium-imaging recordings: movies in which cellular fluorescence changes over time."
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "src": "assets/dunnart/dunnart-development.png",
+                  "width": 1021,
+                  "height": 662,
+                  "title": "Why the dunnart?",
+                  "alt": "A photographic series showing postnatal developmental stages of the fat-tailed dunnart.",
+                  "caption": "Dunnarts are highly immature at birth, and much of their cortical development continues postnatally. Image: Suárez et al. (2017).[2]"
+                },
+                {
+                  "type": "video",
+                  "src": "assets/dunnart/developmental-activity.mp4",
+                  "poster": "assets/dunnart/developmental-activity-poster.jpg",
+                  "width": 400,
+                  "height": 288,
+                  "title": "What does spontaneous activity look like?",
+                  "alt": "A published calcium-imaging movie of spontaneous activity in the developing dunnart cortex.",
+                  "caption": "A published developmental cortical-imaging example showing spontaneous activity emerging and fading. Source: Suárez et al. (2023).[3]"
+                }
+              ]
+            },
+            {
+              "id": "processing",
+              "title": "Data processing",
+              "eyebrow": "From fluorescence movies to trackable events",
+              "layout": "pair",
+              "paragraphs": [
+                "Uneven cell density, indistinct wave fronts, splitting and merging make it difficult to track events by propagation direction alone. I developed a pipeline from raw movies to single-cell activity and spatiotemporal events, with outputs that can be checked against the recording frame by frame."
+              ],
+              "points": [
+                {
+                  "title": "Single-cell signal extraction",
+                  "text": "CaImAn provides motion correction, neuronal spatial components and fluorescence traces.[4] Calcium signals are then converted into frame-by-frame activity states."
+                },
+                {
+                  "title": "Hexagonal lattice mapping",
+                  "text": "Irregular neuronal positions are mapped to a hexagonal lattice, preserving approximate spatial organization while defining consistent local neighborhoods."
+                },
+                {
+                  "title": "Spatiotemporal event detection",
+                  "text": "Breadth-first search identifies connected components in two spatial dimensions plus time, representing local patches, propagation, splitting and merging within one framework."
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "src": "assets/dunnart/neuron-identification.jpeg",
+                  "width": 955,
+                  "height": 955,
+                  "title": "Neuronal identification",
+                  "alt": "Neuronal spatial components identified by CaImAn, outlined in yellow on a calcium-imaging field.",
+                  "caption": "Yellow contours mark identified neuronal spatial components, providing a cell-level representation for position mapping and activity-event extraction."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/dunnart/hexagonal-mapping.png",
+                  "width": 1820,
+                  "height": 864,
+                  "title": "Neuronal positions and lattice mapping",
+                  "alt": "Neuronal positions in the original field and corresponding positions on a hexagonal lattice.",
+                  "caption": "Original neuronal positions are shown on the left and their lattice counterparts on the right. Colors link corresponding spatial regions before and after mapping."
+                },
+                {
+                  "type": "video",
+                  "src": "assets/dunnart/processing-events.mp4",
+                  "poster": "assets/dunnart/processing-events-poster.jpg",
+                  "width": 1440,
+                  "height": 600,
+                  "title": "Raw recording and processing output",
+                  "alt": "A side-by-side movie of fluorescence recordings and processed cellular activity and event representations.",
+                  "caption": "Three synchronized representations of the same recording show how fluorescence changes relate to single-cell activity and extracted events.",
+                  "span": "wide",
+                  "panels": [
+                    {
+                      "title": "Left: raw recording",
+                      "text": "The original calcium-imaging movie shows cellular activity through changes in fluorescence brightness."
+                    },
+                    {
+                      "title": "Middle: extracted activity events",
+                      "text": "Spatiotemporally connected activity and its participating cells reveal event onset, propagation, splitting and merging."
+                    },
+                    {
+                      "title": "Right: binarized neural signals",
+                      "text": "Single-cell signals are represented as active or inactive states, showing which cells meet the activity criterion in the current frame."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "modeling",
+              "title": "Modeling: dual-timescale recovery",
+              "eyebrow": "Initiation, local spread and recovery between events",
+              "layout": "pair",
+              "paragraphs": [
+                "I built a retinal-wave-inspired network with intrinsic noise, signal amplification, local excitatory coupling and activity-dependent recovery.[5] Signal amplification allows a brief input to produce a longer activation, which can recruit neighboring cells.",
+                "The key mechanism is recovery on two coupled timescales. A faster process directly reduces cellular excitability, while a slower process accumulates the effect of strong activity and delays recovery. Recovery duration therefore depends on the strength and duration of preceding activity.[5]",
+                "This lets weak noise-triggered activity recover relatively quickly and seed new events, while sustained network activity leaves a longer recovery window that helps prevent persistent broad excitation. I tested whether these mechanisms generate qualitatively similar activity patterns on both a regular network and a topology mapped from recorded neuronal positions."
+              ],
+              "points": [
+                {
+                  "title": "Weak, brief activity",
+                  "text": "Brief noise-triggered activation has relatively little effect on the slower recovery process, allowing cells to recover quickly and seed future events."
+                },
+                {
+                  "title": "Strong, sustained activity",
+                  "text": "Sustained calcium elevation builds up the slower process and maintains reduced excitability, limiting immediate reactivation after a larger event."
+                }
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "src": "assets/dunnart/propagation-and-refractoriness.png",
+                  "width": 1119,
+                  "height": 760,
+                  "title": "Local propagation and refractoriness",
+                  "alt": "Spontaneous activation recruits neighboring cells, while refractory cells are marked with an X.",
+                  "caption": "Local spontaneous activation can recruit neighboring cells and propagate, while refractory cells are temporarily unable to participate again. Schematic after Gjorgjieva & Eglen (2011).[6]"
+                },
+                {
+                  "type": "image",
+                  "src": "assets/dunnart/signal-amplification-io.png",
+                  "width": 1036,
+                  "height": 1091,
+                  "title": "Input–output signal amplification",
+                  "alt": "A schematic nonlinear input–output relationship with attenuation, amplification and saturation regions.",
+                  "caption": "Intermediate inputs can be amplified, weaker inputs are attenuated and stronger inputs approach saturation. This nonlinear response allows a local signal to recruit more cells."
+                },
+                {
+                  "type": "video",
+                  "src": "assets/dunnart/simulation-comparison.mp4",
+                  "poster": "assets/dunnart/simulation-comparison-poster.jpg",
+                  "width": 1280,
+                  "height": 720,
+                  "title": "Network simulations in two spatial configurations",
+                  "alt": "Simulation excerpts from a regular network and a network mapped from recorded neuronal positions.",
+                  "caption": "The video first shows the regular network, followed by the network mapped from recorded neuronal positions. Fill color indicates intracellular calcium, and yellow outlines mark cells above the activity threshold. Side panels track activity and recovery.",
+                  "span": "wide"
+                }
+              ]
+            }
+          ],
+          "credits": [
+            "Experimental recordings were acquired and provided by Dr. Suranjana Pal in the Richards Laboratory at Washington University School of Medicine. Zhiyuan Ma carried out the computational processing and modeling under the supervision of Prof. Douglas Zhou and Prof. Geoffrey Goodhill.",
+            "Dunnart developmental photographs and the background movie are from Suárez et al. (2017)[2] and Suárez et al. (2023)[3], respectively. The propagation schematic is after Gjorgjieva & Eglen (2011)[6]. The network model draws on the retinal-wave framework of Hennig et al. (2009)[5]."
+          ],
+          "references": [
+            {
+              "label": "Blankenship & Feller (2010)",
+              "title": "Mechanisms underlying spontaneous patterned activity in developing neural circuits",
+              "url": "https://doi.org/10.1038/nrn2759"
+            },
+            {
+              "label": "Suárez et al. (2017)",
+              "title": "Development of body, head and brain features in the Australian fat-tailed dunnart (Sminthopsis crassicaudata; Marsupialia: Dasyuridae); A postnatal model of forebrain formation",
+              "url": "https://doi.org/10.1371/journal.pone.0184450"
+            },
+            {
+              "label": "Suárez et al. (2023)",
+              "title": "Cortical activity emerges in region-specific patterns during early brain development",
+              "url": "https://doi.org/10.1073/pnas.2208654120"
+            },
+            {
+              "label": "Giovannucci et al. (2019)",
+              "title": "CaImAn an open source tool for scalable calcium imaging data analysis",
+              "url": "https://doi.org/10.7554/eLife.38173"
+            },
+            {
+              "label": "Hennig et al. (2009)",
+              "title": "Early-Stage Waves in the Retinal Network Emerge Close to a Critical State Transition between Local and Global Functional Connectivity",
+              "url": "https://doi.org/10.1523/JNEUROSCI.4880-08.2009"
+            },
+            {
+              "label": "Gjorgjieva & Eglen (2011)",
+              "title": "Modeling developmental patterns of spontaneous activity",
+              "url": "https://doi.org/10.1016/j.conb.2011.05.015"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cortical",
+        "thumbnail": {
+          "src": "assets/research/cortical-v2.png",
+          "alt": "Schematic top view of the cortex with regional parcels, nodes and interregional connections.",
+          "width": 1672,
+          "height": 941
+        },
+        "title": "Modeling and Simulation of Large-scale Cortical Network Dynamics",
+        "period": "Sep 2024 – Sep 2026",
+        "metadata": [
+          "Research Assistant, Supervisor: Prof. Douglas Zhou, Shanghai Jiao Tong University"
+        ],
+        "bullets": [
+          "Developed a GPU-accelerated whole-brain dynamic mean-field model in Python with regional heterogeneity across 68 cortical areas; fitted 138 parameters using Levenberg–Marquardt optimization, achieving a validation functional connectivity correlation of 0.74.",
+          "Identified approximate power-law scaling in Gauss–Newton eigenvalue spectra across three working points and validated the associated sensitivity hierarchy through systematic perturbations along all 138 eigenmodes.",
+          "Demonstrated that the leading sensitivity mode was robust across independent seed panels at each working point, while higher modes were less reproducible; compared selected leading modes with cortical maps to explore biological relevance."
+        ],
+        "body": [],
+        "figures": [],
+        "story": {
+          "intro": "Motivated by the coexistence of optimization and parameter variability, I ask whether a few linear combinations of parameters dominate functional-connectivity changes in a large-scale cortical model, and what biological meaning these important combinations may have.",
+          "contentsLabel": "On this page",
+          "references": [
+            {
+              "label": "Deco et al. (2013)",
+              "title": "Resting-State Functional Connectivity Emerges from Structurally and Dynamically Shaped Slow Linear Fluctuations",
+              "url": "https://doi.org/10.1523/JNEUROSCI.1091-13.2013"
+            },
+            {
+              "label": "Deco et al. (2014)",
+              "title": "How Local Excitation–Inhibition Ratio Impacts the Whole Brain Dynamics",
+              "url": "https://doi.org/10.1523/JNEUROSCI.5068-13.2014"
+            },
+            {
+              "label": "Deco et al. (2021)",
+              "title": "Dynamical consequences of regional heterogeneity in the brain’s transcriptional landscape",
+              "url": "https://doi.org/10.1126/sciadv.abf4752"
+            },
+            {
+              "label": "Kong et al. (2021)",
+              "title": "Sensory-motor cortices shape functional connectivity dynamics in the human brain",
+              "url": "https://doi.org/10.1038/s41467-021-26704-y"
+            },
+            {
+              "label": "Wang et al. (2019)",
+              "title": "Inversion of a large-scale circuit model reveals a cortical hierarchy in the dynamic resting human brain",
+              "url": "https://doi.org/10.1126/sciadv.aat7854"
+            },
+            {
+              "label": "Ziaeemehr et al. (2025)",
+              "title": "Virtual Brain Inference (VBI), a flexible and integrative toolkit for efficient probabilistic inference on whole-brain models",
+              "url": "https://elifesciences.org/articles/106194"
+            },
+            {
+              "label": "Bauer et al. (2025) · preprint",
+              "title": "Optimization and variability can coexist",
+              "url": "https://arxiv.org/abs/2505.23398"
+            }
+          ],
+          "sections": [
+            {
+              "id": "cortical-background",
+              "title": "Background and research question",
+              "layout": "wide",
+              "paragraphs": [
+                "Deco and colleagues’ dynamic mean-field model represents each cortical region by neural population activity and couples regions through structural connectivity (SC). Neural activity passes through a hemodynamic model to generate BOLD signals; correlations between regional BOLD time series form simulated functional connectivity (FC), which can be compared with empirical FC.[1]",
+                "Parameter choices determine the differences a model can express. Local feedback inhibition has been used to regulate excitation–inhibition balance. Later work introduced regional heterogeneity through map-constrained response gain or low-dimensional parameterizations based on myelin and the principal FC gradient, retaining relatively few optimized variables.[2][3][4]",
+                "A complementary approach releases more regional freedom. Wang and colleagues independently estimated recurrent coupling and external input in 68 regions, producing a 138-parameter inversion with global parameters. Ziaeemehr and colleagues’ VBI approximates joint posteriors within a chosen parameterization to describe uncertainty and dependence; its illustrated pDMF example infers nine spatial coefficients and global coupling G in a ten-dimensional parameter space.[5][6]",
+                "Biological systems have many parameters, but must all be equally finely tuned? Bauer, Bialek and colleagues show that optimization can coexist with variability: performance is highly sensitive to a few linear combinations of parameters and much less sensitive to many others. Substantially different configurations can therefore maintain near-optimal function.[7]",
+                "Near an optimum, Hessian eigenvectors define these parameter combinations and eigenvalues measure their effects on performance. Across biological systems and related models, eigenvalues span orders of magnitude, supporting a hierarchy of sensitive and softer combinations. The small rhythm-generating circuit below illustrates this idea.[7]",
+                "This motivates two questions in a large-scale cortical model. First, do eigenvalues similarly span orders of magnitude, revealing unequal importance among parameter combinations? Second, which regions and parameter types make up the most important combinations, and what biological meaning might they have? I first find working points that fit FC, then analyze local sensitivity and test the stability of key directions."
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "src": "assets/cortical/mean-field-framework.png",
+                  "width": 1134,
+                  "height": 786,
+                  "title": "Linking structural connectivity, mean-field dynamics and FC",
+                  "alt": "The Deco whole-brain modeling framework connects structural input, neural population dynamics, simulated BOLD and FC, and empirical FC.",
+                  "caption": "Structural connectivity is the input; functional connectivity is an output of neural and hemodynamic dynamics. Fitting evaluates parameters by comparing simulated and empirical FC. Image: Deco et al. (2013).[1]"
+                },
+                {
+                  "type": "image",
+                  "src": "assets/cortical/optimization-and-variability.png",
+                  "width": 1177,
+                  "height": 382,
+                  "title": "Theoretical motivation: optimization with parameter variability",
+                  "alt": "A small rhythm-generating circuit, voltage rhythms in three cell groups, and Hessian spectra for period and duty-cycle performance.",
+                  "caption": "Left and center: the crab stomatogastric circuit and modeled voltages. Right: Hessian spectra for period or duty-cycle performance span orders of magnitude, showing strongly unequal effects of ion-channel parameter combinations. Image: Bauer, Bialek et al. (2025).[7]"
+                }
+              ]
+            },
+            {
+              "id": "cortical-working-points",
+              "title": "Finding working points: restricted starts, then regional freedom",
+              "layout": "wide",
+              "paragraphs": [
+                "Searching a high-dimensional parameter space directly is difficult, so I first obtained usable starts in two restricted families: a four-parameter homogeneous model and a ten-parameter heterogeneous model. Four and ten refer to optimized variables, not regions; both models retain 68 regions. In execution, the heterogeneous beta point was found first, then projected to a homogeneous model and locally refined to obtain alpha.",
+                "Alpha and beta were expanded into the same physical parameter coordinates, with their elementwise midpoint defining gamma. Eight starts were constructed around these three anchors. Damped Levenberg–Marquardt (LM) optimization then adjusted 68 regional recurrent strengths, 68 regional inputs, global coupling and noise: 138 parameters in total, with independent random-seed evaluations.",
+                "Different starts ended at clearly separated parameter configurations with comparable FC fits. This suggests distinct effective working points or multiple local-optimum candidates. The observed endpoints do not, by themselves, establish mathematical convergence or global optimality."
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "src": "assets/cortical/low-dimensional-working-points.png",
+                  "width": 1880,
+                  "height": 1058,
+                  "title": "Low-dimensional fits supply full-parameter starting points",
+                  "alt": "LM trajectories for the four-parameter homogeneous model and CMA-ES trajectories for the ten-parameter heterogeneous model.",
+                  "caption": "The restricted fits supply homogeneous and heterogeneous starts before independent regional parameters are released.",
+                  "readingNotes": [
+                    {
+                      "title": "Reading the two sets of curves",
+                      "text": "On the left, accepted LM updates are plotted against simulated–empirical FC correlation, where higher is better; the two lines use different seed panels. On the right, three CMA-ES restarts plot generation against best-so-far loss 1−r, where lower is better."
+                    },
+                    {
+                      "title": "What passes to the next step",
+                      "text": "The homogeneous family shares recurrent coupling, input, global coupling and noise across regions; the heterogeneous family introduces spatial variation through a restricted parameterization. Beta is searched first, then projected and refined into alpha. These results provide structured starts for the 138-dimensional search rather than a final mechanistic interpretation."
+                    }
+                  ]
+                },
+                {
+                  "type": "image",
+                  "src": "assets/cortical/full-parameter-optimization.png",
+                  "width": 1880,
+                  "height": 1058,
+                  "title": "Multistart optimization after releasing 138 parameters",
+                  "alt": "Three parameter anchors, eight starts and their full-parameter damped-LM trajectories.",
+                  "caption": "Restricted fits are expanded into full-parameter starts and optimized in a common 138-dimensional space.",
+                  "readingNotes": [
+                    {
+                      "title": "Starts on the left, optimization trajectories on the right",
+                      "text": "The left defines alpha, beta and gamma anchors and eight nearby starts. Each curve on the right is one run: LM linearization on the horizontal axis and decision-panel FC correlation on the vertical axis. Thick lines and hollow markers identify the representative endpoint selected from each family."
+                    },
+                    {
+                      "title": "Why use separate seed panels?",
+                      "text": "The simulator contains noise, so a candidate’s performance varies between realizations. Disjoint seed panels estimate derivatives, decide whether to accept updates and independently screen endpoints, reducing the risk of mistaking stochastic variation for improvement. One representative working point per family is then frozen for sensitivity analysis."
+                    }
+                  ]
+                },
+                {
+                  "type": "image",
+                  "src": "assets/cortical/distinct-working-points.png",
+                  "width": 1880,
+                  "height": 1058,
+                  "title": "Comparable FC fits retain different parameter configurations",
+                  "alt": "Regional parameter distributions, parameter-space distances and fresh-seed evaluations at three working points.",
+                  "caption": "Similar functional performance does not collapse the three endpoints to a single parameter configuration.",
+                  "readingNotes": [
+                    {
+                      "title": "What the distributions and distances represent",
+                      "text": "The left box plots summarize recurrent strengths and external inputs across 68 regions. Triangle edges on the right measure distances between endpoints in parameter space; values inside nodes describe movement from their respective starts. They are neither FC errors nor anatomical distances between brain regions."
+                    },
+                    {
+                      "title": "Why retain three distinct working points?",
+                      "text": "The lower table evaluates 50 fresh seeds, giving FC correlations of approximately 0.727, 0.741 and 0.720 for Alpha, Gamma and Beta, respectively. Fits are comparable while parameters remain separated. Each endpoint therefore needs its own local sensitivity analysis; a single fitted vector cannot simply be assumed to specify a unique mechanism."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "cortical-curvature",
+              "title": "Hessian spectra, stability and limits on biological interpretation",
+              "layout": "wide",
+              "paragraphs": [
+                "Optimization changes 138 parameters to improve fit; this analysis instead freezes the working point. I compute a local Jacobian J of the model’s own FC with respect to small parameter changes, then form the Gauss–Newton sensitivity matrix H = JᵀJ. Here, Hessian analysis refers to this local approximation: it measures combinations that change current simulated FC, rather than the exact Hessian of the complete empirical fitting loss.",
+                "Result 03-1 answers the first question: eigenvalues at all three working points span roughly 12 orders of magnitude. The model’s local FC response therefore does show the anticipated hierarchy: a few parameter combinations are highly sensitive, while many others have much weaker effects.",
+                "The second question concerns the biological meaning of important combinations. Interpreting them requires validation under direct positive and negative perturbations and different random seeds. Here, stability becomes the main obstacle: each point’s own leading direction is relatively reproducible, but higher-ranked directions and subspaces are unstable, and reproducible orientation does not guarantee finite-perturbation acceptance. The spectral hierarchy is observed, while reliable links to cortical maps or biological mechanisms remain difficult."
+              ],
+              "media": [
+                {
+                  "type": "image",
+                  "src": "assets/cortical/spectrum-and-perturbations.png",
+                  "width": 3760,
+                  "height": 2116,
+                  "title": "Spectral hierarchy and direct perturbation checks",
+                  "alt": "Normalized eigenvalue spectra at three working points and finite positive/negative perturbations along the first three directions.",
+                  "caption": "Result 03-1 reveals the anticipated hierarchy: eigenvalues of parameter combinations span orders of magnitude. Direct perturbations on the right delimit interpretation of specific directions and step sizes.",
+                  "readingNotes": [
+                    {
+                      "title": "Left: how unequal are the effects of parameter combinations?",
+                      "text": "Direction rank and the eigenvalues normalized within each working point are both on logarithmic axes. The 138 directions span roughly 12 orders of magnitude, implying very different local FC responses to equally sized parameter displacements. These normalized spectra compare relative hierarchy within points, not absolute curvature between points."
+                    },
+                    {
+                      "title": "Right: do real simulations reproduce the local prediction?",
+                      "text": "The table compares measured curvature from positive and negative perturbations with the Gauss–Newton prediction. Green passes every check; orange has an acceptable ratio but fails another condition; red is outside the bounds. At the smallest amplitude, 0.005, Alpha and Gamma mode 1 pass, whereas Beta mode 1 fails. A steep spectrum alone therefore does not validate every direction."
+                    }
+                  ]
+                },
+                {
+                  "type": "image",
+                  "src": "assets/cortical/seed-and-subspace-stability.png",
+                  "width": 3760,
+                  "height": 2116,
+                  "title": "The leading direction reproduces; higher-order subspaces are unstable",
+                  "alt": "Absolute cosine similarities of directions across independent seeds and maximum-principal-angle tests of higher-dimensional subspaces.",
+                  "caption": "The stable object is each working point’s own leading direction, not one direction shared across all points or an entirely stable high-dimensional structure.",
+                  "readingNotes": [
+                    {
+                      "title": "Left: does the same direction survive a change of seeds?",
+                      "text": "The vertical axis is absolute cosine similarity: values near one indicate alignment and values near zero indicate strong disagreement, without ambiguity from an eigenvector’s overall sign. Mode 1 reaches 0.977, 0.956 and 0.952 at Alpha, Gamma and Beta, respectively. Higher-ranked directions reproduce much less well."
+                    },
+                    {
+                      "title": "Right: could this be rotation within the same plane?",
+                      "text": "Subspace tests compare the space spanned by the leading K directions without matching vectors one by one. Smaller maximum principal angles mean closer spaces. Higher-dimensional spaces fail the stability criterion, including mode2+ subspaces after removing mode 1. The instability therefore cannot be explained simply as a different basis within one reliable common subspace."
+                    }
+                  ]
+                },
+                {
+                  "type": "image",
+                  "src": "assets/cortical/dominant-direction-components.png",
+                  "width": 3760,
+                  "height": 2116,
+                  "title": "Which parameters and regions make up the dominant direction?",
+                  "alt": "Squared mode1 loadings grouped by parameter type and signed regional input loadings across 68 cortical regions.",
+                  "caption": "Biological interpretation requires knowing both a direction’s composition and the limits of its validation.",
+                  "readingNotes": [
+                    {
+                      "title": "Parameter shares on the left, regional patterns on the right",
+                      "text": "Stacked bars group squared eigenvector loadings into recurrent coupling, external input, global coupling and noise, giving shares within one direction. The right expands the input component into signed regional loadings. Each row is scaled by its own largest absolute loading, so color intensity alone cannot compare absolute magnitudes between working points."
+                    },
+                    {
+                      "title": "Specific observations and interpretive limits",
+                      "text": "At Alpha, global coupling and regional input contribute 58.1% and 41.9% of squared loadings, respectively; the input component is strongly concentrated in the left superior frontal region. At Gamma, input contributes 80.1% and is distributed across more regions. Patterns differ between points, higher-order structure is unstable, and Beta mode 1 fails finite-perturbation validation. Linking these patterns to cortical maps or biological mechanisms therefore still requires more robust directions, a common comparison scale and independent validation."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "publicationsTitle": "Publications",
+    "publicationsEmpty": "Maybe not today, maybe not tomorrow, maybe not next month, but one day...",
+    "overviewTitle": "Research overview",
+    "resultsTitle": "Results & visualizations",
+    "resultsEmpty": "Detailed results and figures will be added here.",
+    "backLabel": "Back to Research",
+    "openLabel": "View project"
+  },
+  "sharing": {
+    "title": "Sharing",
+    "intro": "Films, reading, and other things I find worth sharing.",
+    "sections": [
+      {
+        "id": "films",
+        "title": "Films",
+        "eyebrow": "Moving images",
+        "description": "Short films I make, and the thoughts behind them.",
+        "emptyTitle": "Films coming soon",
+        "emptyDescription": "No films have been added yet.",
+        "body": [],
+        "figures": [],
+        "gallery": [
+          {
+            "src": "assets/films/poster-1.webp",
+            "alt": "Awakening in the Morning Sun poster: a bicycle on a rocky silhouette beneath a blue sky.",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "assets/films/poster-2.webp",
+            "alt": "Awakening in the Morning Sun poster: a bicycle wheel on the road and an inverted landscape.",
+            "width": 1200,
+            "height": 1800
+          },
+          {
+            "src": "assets/films/poster-3.webp",
+            "alt": "Awakening in the Morning Sun poster: a touring bicycle on grassland beneath distant mountains.",
+            "width": 1800,
+            "height": 1013
+          }
+        ],
+        "film": {
+          "title": "Awakening in the Morning Sun",
+          "subtitle": "梦醒八九点钟",
+          "credit": "Written and directed by Zhiyuan Ma",
+          "trailerTitle": "Trailer",
+          "aboutTitle": "Filmmaker’s note",
+          "postersTitle": "Posters",
+          "stillsTitle": "Stills",
+          "enlargeStillLabel": "View full still",
+          "releaseNotice": "The full film will become publicly available on bilibili in 2027.",
+          "closeLabel": "Close image",
+          "enlargeLabel": "View full poster",
+          "galleryLabel": "Film image viewer",
+          "trailerAlt": "Trailer for Awakening in the Morning Sun",
+          "videoFallback": "Play the trailer",
+          "paragraphs": [
+            "Awakening in the Morning Sun is my first short film. In July 2022, I cycled along the Duku Highway in Xinjiang, filming the landscapes along the way. I initially intended to make a travel record. When I revisited the footage three years later, I began to shape it into another kind of journey: a generation’s search for itself, from disorientation toward a renewed connection with reality.",
+            "The film has no actors or dialogue. Using the bicycle as a metaphor, I explore the disorientation experienced by millennials amid dominant Western cultural narratives, and a search for self-liberation: from being lost in a dream, through silent observation on the road, to reconnecting with reality through labour and rediscovering China’s revolutionary cultural heritage.",
+            "My university’s motto, “When you drink water, remember its source,” has stayed with me. Through this film, I ask: which waters have nourished our generation, and which sources should we remember? For me, the film is both an experiment in filmmaking and a conversation, through images, with my younger self and others of my generation."
+          ],
+          "stills": [
+            {
+              "src": "assets/films/still-01.webp",
+              "alt": "Awakening in the Morning Sun still: An industrial plant and smokestacks beneath cloudy skies, with mountains behind.",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-02.webp",
+              "alt": "Awakening in the Morning Sun still: Travelers resting on a gravel bank and swimming in a turquoise river.",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-03.webp",
+              "alt": "Awakening in the Morning Sun still: A bicycle lying among stones and wildflowers at the edge of a forest.",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-04.webp",
+              "alt": "Awakening in the Morning Sun still: A riverside road running through a mountain valley beneath distant peaks and blue sky.",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-05.webp",
+              "alt": "Awakening in the Morning Sun still: A touring bicycle beside a winding mountain road through green slopes.",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-06.webp",
+              "alt": "Awakening in the Morning Sun still: Rocky ridgelines and green mountain slopes beneath drifting clouds.",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-07.webp",
+              "alt": "Awakening in the Morning Sun still: A white bicycle and trees at night, overlaid with the Chinese and English film titles.",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-08.webp",
+              "alt": "Awakening in the Morning Sun still: The silhouette of a bicycle inside a carriage, with a river, fields and distant hills through the window.",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "src": "assets/films/still-09.webp",
+              "alt": "Awakening in the Morning Sun still: Meadow valleys, woodland and layered mountain ridges beneath blue sky and clouds.",
+              "width": 1920,
+              "height": 1080
+            }
+          ],
+          "trailer": {
+            "src": "assets/films/awakening-trailer.mp4",
+            "poster": "assets/films/trailer-cover.jpg",
+            "width": 1920,
+            "height": 1080,
+            "alt": "Trailer for Awakening in the Morning Sun"
+          }
+        }
+      },
+      {
+        "id": "reading",
+        "title": "Reading",
+        "eyebrow": "Books & stories",
+        "description": "Books and web novels I would like to share.",
+        "emptyTitle": "Reading notes coming soon",
+        "emptyDescription": "No recommendations have been added yet.",
+        "body": [],
+        "figures": [],
+        "gallery": [],
+        "books": [
+          {
+            "id": "stormwind",
+            "title": "暴风城打工实录",
+            "recommendationFile": "暴风城打工实录.md",
+            "cover": {
+              "src": "assets/reading/stormwind.webp",
+              "alt": "Cover of 《暴风城打工实录》: An armored figure with a sword and blue-and-gold shield.",
+              "width": 192,
+              "height": 262
+            }
+          },
+          {
+            "id": "red-dawn",
+            "title": "赤色黎明",
+            "recommendationFile": "赤色黎明.md",
+            "cover": {
+              "src": "assets/reading/red-dawn.webp",
+              "alt": "Cover of 《赤色黎明》: Red calligraphy and silhouetted figures on a pale textured background.",
+              "width": 189,
+              "height": 252
+            }
+          },
+          {
+            "id": "industrial-cthulhu",
+            "title": "工业克苏鲁不相信魔法",
+            "recommendationFile": "工业克苏鲁不相信魔法.md",
+            "cover": {
+              "src": "assets/reading/industrial-cthulhu.webp",
+              "alt": "Cover of 《工业克苏鲁不相信魔法》: Black title text above an aircraft flying over snowy mountains.",
+              "width": 1191,
+              "height": 1588
+            }
+          },
+          {
+            "id": "sword-of-dawnbreaker",
+            "title": "黎明之剑",
+            "recommendationFile": "黎明之剑.md",
+            "cover": {
+              "src": "assets/reading/sword-of-dawnbreaker.webp",
+              "alt": "Cover of 《黎明之剑》: Illustrated characters, a sword and the title printed on the cover.",
+              "width": 387,
+              "height": 516
+            }
+          }
+        ]
+      },
+      {
+        "id": "moments",
+        "title": "Moments",
+        "eyebrow": "Everyday life",
+        "description": "Everyday scenes, shared days, and people I care about.",
+        "emptyTitle": "Moments coming soon",
+        "emptyDescription": "No photographs or entries have been added yet.",
+        "body": [],
+        "figures": [],
+        "gallery": []
+      }
+    ],
+    "contentTitle": "Collection",
+    "backLabel": "Back to Sharing",
+    "openLabel": "Explore"
+  }
+}
