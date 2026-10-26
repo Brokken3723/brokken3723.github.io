@@ -221,7 +221,7 @@ a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outli
 .image-viewer-next { right: 12px; }
 .image-viewer-nav:hover { background: rgb(7 16 28 / .9); }
 .image-viewer-nav:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.image-viewer-close { position: absolute; top: -15px; right: -15px; display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%; background: var(--paper); color: var(--ink); font-size: 26px; line-height: 1; cursor: pointer; }
+.image-viewer-close { position: absolute; top: -15px; right: -15px; z-index: 2; display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%; background: var(--paper); color: var(--ink); font-size: 26px; line-height: 1; cursor: pointer; }
 .image-viewer-close:hover { background: var(--accent-soft); }
 .image-viewer-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 @media (prefers-reduced-motion: no-preference) {
@@ -369,6 +369,35 @@ body[data-page="sharing"][data-view="index"] .page-layout--full .main-content { 
   .section-heading h2 { font-size: 27px; }
   .section-heading > a { font-size: 14px; }
 }
+/* Tablet: give text, artwork and recommendations room without changing desktop. */
+@media (max-width: 1100px) {
+  .sharing-gallery--posters { gap: 32px; padding-inline: 14px; }
+  .sharing-gallery--books { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 54px 48px; }
+  .sharing-gallery--books .sharing-artwork img { height: 280px; }
+  .film-poster-grid { gap: 28px; }
+  .book-layout { grid-template-columns: minmax(160px, 220px) minmax(0, 1fr); gap: 36px; }
+  .book-recommendation { padding-left: 24px; }
+  .book-recommendation-body { font-size: 18px; }
+  .research-entry--illustrated { display: grid; grid-template-columns: minmax(160px, 230px) minmax(0, 1fr); gap: 28px; align-items: start; }
+}
+@media (max-width: 900px) {
+  .page-layout:not(.page-layout--full) { display: block; min-height: 0; }
+  .profile { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 28px; align-items: center; margin-bottom: 44px; }
+  .profile-portrait { width: 140px; height: 175px; margin: 0; }
+  .profile-institution { max-width: none; margin-bottom: 12px; }
+  .profile-links { flex-direction: row; flex-wrap: wrap; gap: 8px 24px; }
+  .profile-link { min-height: 44px; }
+  .research-entry--illustrated { display: grid; grid-template-columns: minmax(160px, 210px) minmax(0, 1fr); gap: 28px; align-items: start; }
+  .research-thumbnail { margin: 0; }
+  .research-entry-content .research-bullets { font-size: 17px; }
+  .sharing-section { margin-top: 68px; }
+  .sharing-section--films { margin-top: 36px; }
+  .sharing-placeholder { height: 240px; }
+  .moment-frame--1, .moment-frame--2, .moment-frame--3 { width: 85%; max-width: 184px; height: auto; aspect-ratio: 4 / 3; border-width: 7px; border-bottom-width: 20px; }
+  .moment-frame--1 { transform: translate(5px, -10px) rotate(-7deg); }
+  .moment-frame--2 { width: 75%; max-width: 152px; height: auto; aspect-ratio: 4 / 5; }
+  .moment-frame--3 { transform: translate(-5px, 2px) rotate(-3deg); }
+}
 @media (max-width: 600px) {
   body { font-size: 17px; }
   .site-shell { padding-inline: 22px; }
@@ -406,6 +435,94 @@ body[data-page="sharing"][data-view="index"] .page-layout--full .main-content { 
   .research-entry p { font-size: 16px; }
   .entry-status { font-size: 13px; }
   .site-footer { align-items: flex-start; gap: 5px 20px; padding-top: 17px; }
+}
+/* Phone: readable single columns, swipeable posters, and comfortably sized controls. */
+@media (max-width: 640px) {
+  .site-shell { padding-inline: 22px; }
+  .page-layout { padding-block: 34px 52px; min-height: 0; }
+  .page-title { font-size: 42px; }
+  .profile { grid-template-columns: 108px minmax(0, 1fr); gap: 20px; align-items: start; }
+  .profile-portrait { width: 108px; height: 135px; }
+  .profile-name { font-size: 30px; }
+  .profile-role, .profile-institution { font-size: 14px; }
+  .profile-links { gap: 0 16px; font-size: 14px; }
+  .profile-link { min-height: 44px; }
+  .section-heading { flex-wrap: wrap; }
+  .section-heading h2 { font-size: 25px; }
+  .section-heading > a { min-height: 44px; display: inline-flex; align-items: center; }
+  .research-entry--illustrated { display: block; padding-block: 30px; }
+  .research-entry--illustrated:first-child { padding-top: 0; }
+  .research-thumbnail { width: 100%; max-width: none; margin-bottom: 22px; }
+  .research-entry h3 { font-size: 21px; line-height: 1.5; }
+  .research-entry .research-bullets { font-size: 17px; }
+  .project-meta, .research-entry .project-meta p { font-size: 15px; }
+  .sharing-section { margin-top: 52px; }
+  .sharing-section--films { margin-top: 30px; }
+  .sharing-section-heading { gap: 16px; }
+  .sharing-gallery--posters, .film-poster-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; gap: 28px; align-items: start; padding: 28px 14px 42px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scroll-padding-inline: 14px; scrollbar-width: thin; scrollbar-color: var(--image-line) transparent; }
+  .sharing-gallery--posters .sharing-artwork, .film-poster-grid .film-poster-button { width: max-content; max-width: 100%; justify-self: center; scroll-snap-align: center; }
+  .sharing-gallery--posters .sharing-artwork { --art-y: 0px; --art-rotate: -1.5deg; }
+  .sharing-gallery--posters .sharing-artwork--2 { --art-rotate: 1.5deg; }
+  .sharing-gallery--posters .sharing-artwork img, .film-poster-button img { width: auto; max-width: 100%; height: auto; max-height: 320px; object-fit: contain; }
+  .sharing-gallery--posters .sharing-artwork img { max-height: 240px; }
+  .film-poster-grid .film-poster-button img { max-height: 280px; }
+  .sharing-gallery--books { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 42px 28px; padding: 24px 12px 42px; }
+  .sharing-gallery--books .sharing-artwork img { width: auto; height: clamp(150px, 48vw, 240px); max-width: 100%; object-fit: contain; }
+  .sharing-gallery--books .sharing-artwork { --art-y: 0px; }
+  .sharing-gallery--books .sharing-artwork--2, .sharing-gallery--books .sharing-artwork--4 { --art-y: 10px; }
+  .sharing-placeholder-link { margin: 24px 6px 0; }
+  .sharing-placeholder--moments { height: 170px; }
+  .moment-frame--1, .moment-frame--2, .moment-frame--3 { width: 90%; border-width: 5px; border-bottom-width: 14px; }
+  .moment-frame--2 { width: 85%; }
+  .moment-frame--1::after, .moment-frame--2::after, .moment-frame--3::after { width: 12px; height: 12px; top: 8px; right: 10px; }
+  .detail-page .page-title { font-size: clamp(30px, 8vw, 40px); line-height: 1.3; letter-spacing: -.5px; overflow-wrap: anywhere; }
+  .detail-page .research-bullets { font-size: 17px; }
+  .back-link { min-height: 44px; margin-bottom: 24px; }
+  .back-link--bottom { margin-top: 32px; margin-bottom: 0; }
+  .film-header { margin-bottom: 30px; }
+  .film-subtitle { font-size: 22px; }
+  .film-copy, .film-posters, .film-stills { margin-top: 44px; }
+  .film-copy p { font-size: 18px; line-height: 1.9; }
+  .film-release { padding: 12px 14px; font-size: 16px; }
+  .film-section-title { font-size: 27px; }
+  .film-still-controls { gap: 12px; flex-wrap: wrap; }
+  .gallery-control--autoplay { min-width: 98px; padding-inline: 12px; }
+  .book-layout { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .reading-book { padding-block: 38px 42px; }
+  .reading-book:first-of-type { padding-top: 20px; }
+  .detail-page .book-cover img { height: 260px; }
+  .book-recommendation { min-height: 0; padding: 0; border: 0; }
+  .book-recommendation :is(h2,h3) { font-size: 27px; }
+  .book-recommendation-label { margin-bottom: 18px; }
+  .book-recommendation-body { max-width: none; font-size: 18px; line-height: 1.9; }
+  .book-recommendation-body:empty { min-height: 0; }
+  .reading-group > summary { gap: 16px; padding-block: 20px; }
+  .reading-group > summary h2 { font-size: 26px; }
+  .reading-group--current .reading-group-content p { font-size: 18px; }
+  .story-intro { margin-top: 22px; font-size: 19px; }
+  .story-contents { margin-top: 28px; padding-block: 16px; }
+  .story-contents ol { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .story-contents a { align-items: center; min-height: 44px; font-size: 16px; }
+  .story-section { margin-top: 42px; padding-top: 26px; }
+  .story-kicker { flex-wrap: wrap; gap: 6px 12px; letter-spacing: .03em; }
+  .story-section-header h2 { font-size: 29px; margin-bottom: 20px; }
+  .story-prose, .story-reading-notes dd { font-size: 18px; }
+  .story-points { padding: 20px 18px; gap: 18px; }
+  .story-points dd, .story-points dt { font-size: 17px; }
+  .story-media-grid { gap: 26px; margin-top: 26px; }
+  .story-panel-notes { gap: 16px; font-size: 15px; }
+  .story-references { font-size: 15px; }
+  .story-references li, .project-meta, .book-recommendation-body { overflow-wrap: anywhere; }
+  .image-viewer { max-width: calc(100vw - 48px); max-height: calc(100dvh - 48px); padding: 10px; }
+  .image-viewer-image { max-width: calc(100vw - 70px); max-height: calc(100dvh - 120px); }
+  .image-viewer-close { top: -12px; right: -12px; width: 44px; height: 44px; }
+  .image-viewer-previous { left: 6px; }
+  .image-viewer-next { right: 6px; }
+}
+@media (hover: none) {
+  .sharing-artwork:hover { transform: translateY(var(--art-y)) rotate(var(--art-rotate)); }
+  .sharing-artwork:hover::before, .sharing-artwork:hover::after { opacity: 0; }
+  .film-poster-button:hover { transform: none; }
 }
 @media (max-width: 360px) {
   .site-shell { padding-inline: 19px; }

@@ -232,6 +232,7 @@ function validateCopy(copy, language) {
       }
       for (const field of ['body', 'figures']) if (item[field] !== undefined && !Array.isArray(item[field])) throw new Error(`${language}.${section}.${item.id}.${field} must be an array.`);
       for (const field of ['body', 'bullets', 'metadata']) if (item[field]?.some(value => typeof value !== 'string')) throw new Error(`${language}.${section}.${item.id}.${field} must contain strings.`);
+      if (item.resultsEmpty !== undefined && (typeof item.resultsEmpty !== 'string' || !item.resultsEmpty.trim())) throw new Error(`${language}.${section}.${item.id}.resultsEmpty must contain text.`);
       for (const figure of item.figures || []) {
         safeAssetPath(figure.src, `${language}.${section}.${item.id}.figures.src`);
         if (!/\.(png|jpe?g|webp|gif|svg|avif)$/i.test(figure.src)) throw new Error(`Unsupported figure image: ${figure.src}`);
@@ -280,13 +281,14 @@ function renderReadingPage(copy, section, href, rootPrefix) {
   const chinese = copy.localeLabel === '中文';
   const recommendationsTitle = chinese ? '网文推荐' : 'Web fiction recommendations';
   const currentlyReadingTitle = chinese ? '正在阅读' : 'Currently reading';
+  const currentlyReadingBook = chinese ? '毛泽东选集·第二卷' : 'Selected Works of Mao Tse-tung, Volume II';
   const recommendationLabel = chinese ? '推荐语' : 'Recommendation';
   const books = section.books.map(book=>`<section class="book-layout reading-book" id="${escapeHtml(book.id)}" aria-labelledby="book-${escapeHtml(book.id)}-heading"><figure class="book-cover"><img src="${rootPrefix}${escapeHtml(book.cover.src)}" alt="${escapeHtml(book.cover.alt)}" width="${book.cover.width}" height="${book.cover.height}" loading="lazy" decoding="async"></figure><div class="book-recommendation"><h3 id="book-${escapeHtml(book.id)}-heading">${escapeHtml(book.title)}</h3><p class="book-recommendation-label">${escapeHtml(recommendationLabel)}</p><div class="book-recommendation-body">${renderParagraphs(book.recommendations)}</div></div></section>`).join('\n');
   return `<article class="detail-page detail-page--reading" aria-labelledby="detail-title">
     ${renderBackLink(copy.sharing.backLabel,parent)}
     <header class="detail-header"><h1 id="detail-title" class="page-title">${escapeHtml(section.title)}<span class="heading-period" aria-hidden="true">.</span></h1></header>
     <details class="reading-group" id="web-fiction" open><summary><h2>${escapeHtml(recommendationsTitle)}</h2></summary><div class="reading-group-content">${books}</div></details>
-    <details class="reading-group reading-group--current" id="currently-reading" open><summary><h2>${escapeHtml(currentlyReadingTitle)}</h2></summary><div class="reading-group-content"><p>毛泽东选集·第二卷</p></div></details>
+    <details class="reading-group reading-group--current" id="currently-reading" open><summary><h2>${escapeHtml(currentlyReadingTitle)}</h2></summary><div class="reading-group-content"><p>${escapeHtml(currentlyReadingBook)}</p></div></details>
     ${renderBackLink(copy.sharing.backLabel,parent,true)}
   </article>`;
 }
@@ -372,7 +374,7 @@ function renderDetailContent(copy, page, item, href, rootPrefix) {
   } else if (page === 'research') {
     contents = `<header class="detail-header">${title}${renderProjectMetadata(item)}</header>
       <section class="content-section" aria-labelledby="overview-heading"><div class="section-heading"><h2 id="overview-heading">${escapeHtml(copy.research.overviewTitle)}</h2></div>${renderBullets(item.bullets)}${renderParagraphs(item.body, 'detail-copy')}</section>
-      <section class="content-section results-section" aria-labelledby="results-heading"><div class="section-heading"><h2 id="results-heading">${escapeHtml(copy.research.resultsTitle)}</h2></div>${item.figures?.length ? renderFigures(item.figures, rootPrefix) : `<p class="empty-note">${escapeHtml(copy.research.resultsEmpty)}</p>`}</section>`;
+      <section class="content-section results-section" aria-labelledby="results-heading"><div class="section-heading"><h2 id="results-heading">${escapeHtml(copy.research.resultsTitle)}</h2></div>${item.figures?.length ? renderFigures(item.figures, rootPrefix) : `<p class="empty-note">${escapeHtml(item.resultsEmpty || copy.research.resultsEmpty)}</p>`}</section>`;
   } else {
     const body = renderParagraphs(item.body, 'detail-copy');
     const figures = renderFigures(item.figures, rootPrefix);

@@ -63,7 +63,8 @@
           "Qualitatively reproduced cue- and trace-responsive activity patterns; decoded training history from simulated CA1 activity using linear SVMs and evaluated the effects of circuit perturbations during learning and retrieval."
         ],
         "body": [],
-        "figures": []
+        "figures": [],
+        "resultsEmpty": "Still in progress"
       },
       {
         "id": "dunnart",
@@ -560,7 +561,7 @@
         ],
         "film": {
           "title": "Awakening in the Morning Sun",
-          "subtitle": "梦醒八九点钟",
+          "subtitle": "Awakening at Eight or Nine",
           "credit": "Written and directed by Zhiyuan Ma",
           "trailerTitle": "Trailer",
           "aboutTitle": "Filmmaker’s note",
@@ -656,44 +657,44 @@
         "books": [
           {
             "id": "stormwind",
-            "title": "暴风城打工实录",
+            "title": "Working Life in Stormwind",
             "recommendationFile": "暴风城打工实录.md",
             "cover": {
               "src": "assets/reading/stormwind.webp",
-              "alt": "Cover of 《暴风城打工实录》: An armored figure with a sword and blue-and-gold shield.",
+              "alt": "Cover of Working Life in Stormwind: an armored figure with a sword and blue-and-gold shield.",
               "width": 192,
               "height": 262
             }
           },
           {
             "id": "red-dawn",
-            "title": "赤色黎明",
+            "title": "Red Dawn",
             "recommendationFile": "赤色黎明.md",
             "cover": {
               "src": "assets/reading/red-dawn.webp",
-              "alt": "Cover of 《赤色黎明》: Red calligraphy and silhouetted figures on a pale textured background.",
+              "alt": "Cover of Red Dawn: red calligraphy and silhouetted figures on a pale textured background.",
               "width": 189,
               "height": 252
             }
           },
           {
             "id": "industrial-cthulhu",
-            "title": "工业克苏鲁不相信魔法",
+            "title": "Industrial Cthulhu Does Not Believe in Magic",
             "recommendationFile": "工业克苏鲁不相信魔法.md",
             "cover": {
               "src": "assets/reading/industrial-cthulhu.webp",
-              "alt": "Cover of 《工业克苏鲁不相信魔法》: Black title text above an aircraft flying over snowy mountains.",
+              "alt": "Cover of Industrial Cthulhu Does Not Believe in Magic: black title text above an aircraft flying over snowy mountains.",
               "width": 1191,
               "height": 1588
             }
           },
           {
             "id": "sword-of-dawnbreaker",
-            "title": "黎明之剑",
+            "title": "Sword of Dawnbreaker",
             "recommendationFile": "黎明之剑.md",
             "cover": {
               "src": "assets/reading/sword-of-dawnbreaker.webp",
-              "alt": "Cover of 《黎明之剑》: Illustrated characters, a sword and the title printed on the cover.",
+              "alt": "Cover of Sword of Dawnbreaker: illustrated characters, a sword and the title printed on the cover.",
               "width": 387,
               "height": 516
             }
