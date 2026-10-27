@@ -713,6 +713,21 @@
         "gallery": []
       }
     ],
+    "friendLinks": {
+      "title": "友情链接",
+      "items": [
+        {
+          "name": "Qiheng Wang",
+          "url": "https://wangq1h.github.io/",
+          "avatar": {"src": "assets/friends/qiheng-wang.png", "alt": "Qiheng Wang 的主页头像", "width": 667, "height": 651}
+        },
+        {
+          "name": "Ruocheng Wang",
+          "url": "https://wang-ruocheng.github.io/",
+          "avatar": {"src": "assets/friends/ruocheng-wang.jpg", "alt": "Ruocheng Wang 的主页头像", "width": 1136, "height": 1610}
+        }
+      ]
+    },
     "contentTitle": "分享内容",
     "backLabel": "返回分享",
     "openLabel": "查看详情"

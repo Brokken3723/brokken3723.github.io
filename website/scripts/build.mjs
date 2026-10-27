@@ -161,6 +161,16 @@ function validateCopy(copy, language) {
   if (!Array.isArray(copy.about.interests) || !Array.isArray(copy.research.projects) || !Array.isArray(copy.sharing.sections)) {
     throw new Error(`${language}.json must include about.interests, research.projects and sharing.sections arrays.`);
   }
+  if (copy.sharing.friendLinks !== undefined) {
+    const friends = copy.sharing.friendLinks;
+    if (!friends || typeof friends.title !== 'string' || !friends.title.trim() || !Array.isArray(friends.items)) throw new Error(`${language}.sharing.friendLinks requires a title and items.`);
+    for (const friend of friends.items) {
+      if (!friend || typeof friend.name !== 'string' || !friend.name.trim() || typeof friend.url !== 'string' || new URL(friend.url).protocol !== 'https:') throw new Error('Friend links require a name and HTTPS homepage URL.');
+      const avatar = friend.avatar;
+      if (!avatar || typeof avatar.alt !== 'string' || !avatar.alt.trim() || !Number.isInteger(avatar.width) || avatar.width < 1 || !Number.isInteger(avatar.height) || avatar.height < 1) throw new Error('Friend avatars require alt text and positive dimensions.');
+      safeAssetPath(avatar.src, `${language}.sharing.friendLinks.avatar`);
+    }
+  }
   for (const [section, items] of [['research', copy.research.projects], ['sharing', copy.sharing.sections]]) {
     const ids = new Set();
     for (const item of items) {
@@ -352,11 +362,10 @@ function renderDetailContent(copy, page, item, href, rootPrefix) {
     const chinese = copy.localeLabel === '中文';
     const previousLabel = chinese ? '上一张' : 'Previous image';
     const nextLabel = chinese ? '下一张' : 'Next image';
-    const pauseLabel = chinese ? '暂停轮播' : 'Pause slideshow';
-    const playLabel = chinese ? '继续轮播' : 'Resume slideshow';
+    const stillsHint = chinese ? '滚轮或左右轻扫切换 · 点击主图放大' : 'Scroll or swipe to browse · Click the centre image to enlarge';
     const imageButtons = (images,label,className='',group='posters') => images.map((image,index)=>`<button class="film-poster-button${className?' '+className:''}" type="button" data-image-viewer data-image-group="${group}" data-image-src="${rootPrefix}${escapeHtml(image.src)}" data-image-alt="${escapeHtml(image.alt)}" aria-label="${escapeHtml(label)} ${index+1}"><img src="${rootPrefix}${escapeHtml(image.src)}" alt="${escapeHtml(image.alt)}" width="${image.width}" height="${image.height}" loading="lazy" decoding="async" draggable="false"></button>`).join('\n');
     const posters = imageButtons(item.gallery,film.enlargeLabel);
-    const stills = film.stills?.length ? `<section class="film-stills" aria-labelledby="film-stills-heading"><h2 class="film-section-title" id="film-stills-heading">${escapeHtml(film.stillsTitle)}</h2><div class="film-still-carousel" data-still-carousel role="region" aria-label="${escapeHtml(film.stillsTitle)}"><div class="film-still-track" data-still-track>${imageButtons(film.stills,film.enlargeStillLabel,'film-still-button','stills')}</div><div class="film-still-controls"><button class="gallery-control" type="button" data-still-previous aria-label="${escapeHtml(previousLabel)}"><span aria-hidden="true">←</span></button><span class="gallery-count" data-still-count aria-live="off" aria-atomic="true">1 / ${film.stills.length}</span><button class="gallery-control" type="button" data-still-next aria-label="${escapeHtml(nextLabel)}"><span aria-hidden="true">→</span></button><button class="gallery-control gallery-control--autoplay" type="button" data-still-toggle data-pause-label="${escapeHtml(pauseLabel)}" data-play-label="${escapeHtml(playLabel)}" aria-label="${escapeHtml(pauseLabel)}" aria-pressed="false">${escapeHtml(pauseLabel)}</button></div></div></section>` : '';
+    const stills = film.stills?.length ? `<section class="film-stills" aria-labelledby="film-stills-heading"><h2 class="film-section-title" id="film-stills-heading">${escapeHtml(film.stillsTitle)}</h2><div class="film-still-carousel" data-still-carousel role="region" aria-label="${escapeHtml(film.stillsTitle)}" aria-describedby="film-stills-hint"><div class="film-still-track" data-still-track>${imageButtons(film.stills,film.enlargeStillLabel,'film-still-button','stills')}</div><div class="film-still-controls"><button class="gallery-control" type="button" data-still-previous aria-label="${escapeHtml(previousLabel)}"><span aria-hidden="true">←</span></button><span class="gallery-count" data-still-count aria-live="off" aria-atomic="true">1 / ${film.stills.length}</span><button class="gallery-control" type="button" data-still-next aria-label="${escapeHtml(nextLabel)}"><span aria-hidden="true">→</span></button></div><p class="film-still-hint" id="film-stills-hint">${escapeHtml(stillsHint)}</p></div></section>` : '';
     return `<article class="detail-page detail-page--film" aria-labelledby="detail-title">
       ${renderBackLink(backLabel,parent)}
       <header class="film-header"><h1 id="detail-title" class="page-title">${escapeHtml(film.title)}<span class="heading-period" aria-hidden="true">.</span></h1><p class="film-subtitle">${escapeHtml(film.subtitle)}</p><p class="film-credit">${escapeHtml(film.credit)}</p></header>
@@ -420,7 +429,13 @@ function renderPageContent(copy, page, paragraphs, href, rootPrefix) {
       ? `<div class="sharing-gallery sharing-gallery--posters">${section.gallery.map((image,index)=>`<a class="sharing-artwork sharing-artwork--${index+1}" href="${destination}" aria-label="${label} — ${index+1}"><img src="${rootPrefix}${escapeHtml(image.src)}" alt="${escapeHtml(image.alt)}" width="${image.width}" height="${image.height}" loading="${index===0?'eager':'lazy'}" decoding="async"></a>`).join('\n')}</div>`
       : `<a class="sharing-placeholder-link sharing-artwork" href="${destination}" aria-label="${label}">${placeholders[section.id]||''}</a>`;
     return `<section class="sharing-section sharing-section--${escapeHtml(section.id)}" id="${escapeHtml(section.id)}" aria-labelledby="${escapeHtml(section.id)}-heading"><header class="sharing-section-heading"><h2 id="${escapeHtml(section.id)}-heading"><a class="section-title-link" href="${destination}">${escapeHtml(section.title)}</a></h2></header>${gallery}</section>`;
-  }).join('\n')}`;
+  }).join('\n')}${renderFriendLinks(copy, rootPrefix)}`;
+}
+
+function renderFriendLinks(copy, rootPrefix) {
+  const friends = copy.sharing.friendLinks;
+  if (!friends?.items.length) return '';
+  return `<section class="sharing-section sharing-section--friends" id="friends" aria-labelledby="friends-heading"><header class="sharing-section-heading"><h2 id="friends-heading">${escapeHtml(friends.title)}</h2></header><ul class="friend-list">${friends.items.map(friend => `<li><a class="friend-link" href="${escapeHtml(friend.url)}" target="_blank" rel="noopener noreferrer"><img class="friend-avatar" src="${rootPrefix}${escapeHtml(friend.avatar.src)}" alt="${escapeHtml(friend.avatar.alt)}" width="${friend.avatar.width}" height="${friend.avatar.height}" loading="lazy" decoding="async"><span class="friend-name">${escapeHtml(friend.name)}</span><span class="friend-domain">${escapeHtml(new URL(friend.url).hostname)} <span aria-hidden="true">↗</span></span></a></li>`).join('')}</ul></section>`;
 }
 
 function renderLegacyRedirect(copy, language) {

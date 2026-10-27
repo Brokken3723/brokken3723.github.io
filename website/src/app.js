@@ -40,93 +40,107 @@
     const track = carousel.querySelector('[data-still-track]');
     const slides = Array.from(track.querySelectorAll('[data-image-viewer]'));
     const count = carousel.querySelector('[data-still-count]');
-    const toggle = carousel.querySelector('[data-still-toggle]');
-    if (!slides.length || !toggle) return;
+    if (!slides.length) return;
     let current = 0;
-    let pendingTarget = null;
-    let scrollFrame;
     let autoTimer;
     let inView = false;
-    let userPaused = reducedMotion;
-    // Sentinels keep both wrap directions moving by one frame, rather than
-    // scrolling backwards across the complete collection at its boundary.
-    function cloneSlide(slide) {
-      const clone = slide.cloneNode(true);
-      for (const attribute of ['data-image-viewer','data-image-src','data-image-alt','data-image-group','aria-label']) clone.removeAttribute(attribute);
-      clone.setAttribute('data-carousel-clone','');
-      clone.setAttribute('aria-hidden','true');
-      clone.tabIndex = -1;
-      clone.inert = true;
-      return clone;
-    }
-    track.prepend(cloneSlide(slides[slides.length - 1]));
-    track.append(cloneSlide(slides[0]));
+    let swipeStart;
+    let suppressClickUntil = 0;
+    let wheelDelta = 0;
+    let lastWheelAt = 0;
+    let wheelLockedUntil = 0;
     function canAutoPlay() {
       const focused = document.activeElement;
-      const keyboardFocus = carousel.contains(focused) && focused !== toggle && focused.matches(':focus-visible');
-      return slides.length > 1 && !userPaused && inView && !document.hidden && !carousel.matches(':hover') && !keyboardFocus && !document.querySelector('.image-viewer[open]');
+      const keyboardFocus = carousel.contains(focused) && focused.matches(':focus-visible');
+      return slides.length > 1 && !reducedMotion && inView && !document.hidden && !carousel.matches(':hover') && !keyboardFocus && !swipeStart && !document.querySelector('.image-viewer[open]');
     }
     function scheduleAuto() {
       clearTimeout(autoTimer);
       if (canAutoPlay()) autoTimer = setTimeout(() => select(current + 1), 4000);
     }
-    function updateToggle() {
-      const label = userPaused ? toggle.dataset.playLabel : toggle.dataset.pauseLabel;
-      toggle.textContent = label;
-      toggle.setAttribute('aria-label',label);
-      toggle.setAttribute('aria-pressed',String(userPaused));
-    }
-    function update(index) {
-      current = index;
-      count.textContent = `${index + 1} / ${slides.length}`;
-      slides.forEach((slide, position) => { slide.inert = position !== index; });
-    }
     function select(index, animate = true) {
-      if (!track.clientWidth) return;
-      if (pendingTarget !== null) {
-        pendingTarget = null;
-        track.scrollTo({left:(current + 1) * track.clientWidth,behavior:'instant'});
-      }
-      const next = wrapIndex(index, slides.length);
-      const forwardWrap = current === slides.length - 1 && next === 0 && index > current;
-      const backwardWrap = current === 0 && next === slides.length - 1 && index < current;
-      const smooth = animate && !reducedMotion && (Math.abs(next - current) === 1 || forwardWrap || backwardWrap);
-      const physical = smooth && forwardWrap ? slides.length + 1 : smooth && backwardWrap ? 0 : next + 1;
-      pendingTarget = smooth ? physical : null;
-      update(next);
-      track.scrollTo({left:physical * track.clientWidth,behavior:smooth?'smooth':'instant'});
+      current = wrapIndex(index, slides.length);
+      carousel.classList.toggle('is-instant', !animate || reducedMotion);
+      count.textContent = `${current + 1} / ${slides.length}`;
+      const previous = wrapIndex(current - 1, slides.length);
+      const next = wrapIndex(current + 1, slides.length);
+      slides.forEach((slide, position) => {
+        const active = position === current;
+        const before = slides.length > 2 && position === previous;
+        const after = slides.length > 1 && position === next;
+        slide.classList.toggle('is-current', active);
+        slide.classList.toggle('is-previous', before);
+        slide.classList.toggle('is-next', after);
+        slide.inert = !active && !before && !after;
+        slide.tabIndex = active ? 0 : -1;
+        slide.setAttribute('aria-hidden', String(!active));
+        if (active) slide.setAttribute('aria-current', 'true');
+        else slide.removeAttribute('aria-current');
+      });
       scheduleAuto();
     }
     carouselControllers.set(carousel, {select});
     carousel.querySelector('[data-still-previous]').addEventListener('click', () => select(current - 1));
     carousel.querySelector('[data-still-next]').addEventListener('click', () => select(current + 1));
-    track.addEventListener('scroll', () => {
-      cancelAnimationFrame(scrollFrame);
-      scrollFrame = requestAnimationFrame(() => {
-        if (!track.clientWidth) return;
-        const physical = Math.max(0,Math.min(slides.length + 1,Math.round(track.scrollLeft / track.clientWidth)));
-        if (pendingTarget !== null && Math.abs(track.scrollLeft - pendingTarget * track.clientWidth) > 1) return;
-        pendingTarget = null;
-        const index = wrapIndex(physical - 1,slides.length);
-        update(index);
-        if ((physical === 0 || physical === slides.length + 1) && Math.abs(track.scrollLeft - physical * track.clientWidth) < 1) {
-          track.scrollTo({left:(index + 1) * track.clientWidth,behavior:'instant'});
-        }
-      });
+    // A neighboring card brings it into focus; only the sharp central card
+    // opens the full-size viewer. Also discard the click synthesized after a swipe.
+    track.addEventListener('click', event => {
+      if (performance.now() < suppressClickUntil) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
+      const slide = event.target.closest('.film-still-button');
+      const index = slides.indexOf(slide);
+      if (index >= 0 && index !== current) {
+        event.preventDefault();
+        select(index);
+      }
+    }, {capture: true});
+    track.addEventListener('wheel', event => {
+      if (event.ctrlKey || slides.length < 2 || !event.target.closest('.film-still-button')) return;
+      const raw = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+      if (!raw) return;
+      event.preventDefault();
+      const now = performance.now();
+      const delta = raw * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? track.clientHeight : 1);
+      if (now - lastWheelAt > 180 || Math.sign(delta) !== Math.sign(wheelDelta)) wheelDelta = 0;
+      lastWheelAt = now;
+      if (now < wheelLockedUntil) return;
+      wheelDelta += delta;
+      if (Math.abs(wheelDelta) < 48) return;
+      select(current + Math.sign(wheelDelta));
+      wheelDelta = 0;
+      wheelLockedUntil = now + 380;
+    }, {passive: false});
+    track.addEventListener('pointerdown', event => {
+      if (event.pointerType === 'mouse' || !event.isPrimary) return;
+      swipeStart = {x: event.clientX, y: event.clientY, id: event.pointerId};
+      scheduleAuto();
     }, {passive: true});
-    track.addEventListener('pointerdown', () => { pendingTarget = null; }, {passive: true});
-    track.addEventListener('wheel', () => { pendingTarget = null; }, {passive: true});
+    track.addEventListener('pointermove', event => {
+      if (!swipeStart || swipeStart.id !== event.pointerId) return;
+      const dx = event.clientX - swipeStart.x;
+      const dy = event.clientY - swipeStart.y;
+      if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy) * 1.3) track.setPointerCapture(event.pointerId);
+    }, {passive: true});
+    track.addEventListener('pointerup', event => {
+      if (!swipeStart || swipeStart.id !== event.pointerId) return;
+      const dx = event.clientX - swipeStart.x;
+      const dy = event.clientY - swipeStart.y;
+      swipeStart = null;
+      if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+        suppressClickUntil = performance.now() + 400;
+        select(current + (dx < 0 ? 1 : -1));
+      } else scheduleAuto();
+    }, {passive: true});
+    track.addEventListener('pointercancel', () => { swipeStart = null; scheduleAuto(); }, {passive: true});
     carousel.addEventListener('keydown', event => {
       if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
       event.preventDefault();
       const focusSlide = slides.includes(document.activeElement);
       select(event.key === 'Home' ? 0 : event.key === 'End' ? slides.length - 1 : current + (event.key === 'ArrowRight' ? 1 : -1));
       if (focusSlide) slides[current].focus({preventScroll: true});
-    });
-    toggle.addEventListener('click',()=>{
-      userPaused = !userPaused;
-      updateToggle();
-      scheduleAuto();
     });
     carousel.addEventListener('pointerenter',scheduleAuto);
     carousel.addEventListener('pointerleave',scheduleAuto);
@@ -143,8 +157,7 @@
         scheduleAuto();
       },{threshold:[0,.25]}).observe(track);
     } else inView = true;
-    if ('ResizeObserver' in window) new ResizeObserver(() => select(current, false)).observe(track);
-    updateToggle();
+    carousel.classList.add('is-ready');
     select(0,false);
   });
   const imageViewer = document.querySelector('.image-viewer');
@@ -170,7 +183,8 @@
       if (carousel) carouselControllers.get(carousel).select(current, false);
     }
     buttons.forEach(button=>{
-      button.addEventListener('click',()=>{
+      button.addEventListener('click',event=>{
+        if (event.defaultPrevented) return;
         collection = buttons.filter(item => item.dataset.imageGroup === button.dataset.imageGroup);
         showImage(collection.indexOf(button));
         imageViewer.showModal();
