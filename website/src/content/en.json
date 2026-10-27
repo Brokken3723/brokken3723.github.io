@@ -690,11 +690,11 @@
           },
           {
             "id": "sword-of-dawnbreaker",
-            "title": "Sword of Dawnbreaker",
+            "title": "The Sword of Dawn",
             "recommendationFile": "黎明之剑.md",
             "cover": {
               "src": "assets/reading/sword-of-dawnbreaker.webp",
-              "alt": "Cover of Sword of Dawnbreaker: illustrated characters, a sword and the title printed on the cover.",
+              "alt": "Cover of The Sword of Dawn: illustrated characters, a sword and the title printed on the cover.",
               "width": 387,
               "height": 516
             }

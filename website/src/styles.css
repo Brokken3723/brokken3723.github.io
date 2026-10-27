@@ -211,7 +211,6 @@ a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outli
 .film-still-track { display: flex; width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
 .film-still-track::-webkit-scrollbar { display: none; }
 .film-still-controls { display: flex; justify-content: center; align-items: center; gap: 24px; padding-top: 16px; }
-.film-still-hint { margin: 14px 0 0; text-align: center; font-size: 13px; line-height: 1.7; color: var(--soft); }
 .gallery-control { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); background: transparent; color: var(--accent); font-size: 23px; cursor: pointer; }
 .gallery-control:hover { background: var(--accent-soft); }
 .gallery-control:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -523,7 +522,6 @@ body[data-page="sharing"][data-view="index"] .page-layout--full .main-content { 
   .film-still-carousel.is-ready .film-still-button { width: 84%; padding: 4px; border-radius: 8px; }
   .film-still-carousel.is-ready .film-still-button img { border-radius: 4px; }
   .film-still-carousel.is-ready .film-still-button.is-previous, .film-still-carousel.is-ready .film-still-button.is-next { filter: blur(2px) saturate(.7); }
-  .film-still-hint { max-width: 28em; margin: 12px auto 0; font-size: 12px; }
   .book-layout { grid-template-columns: minmax(0, 1fr); gap: 26px; }
   .reading-book { padding-block: 38px 42px; }
   .reading-book:first-of-type { padding-top: 20px; }
