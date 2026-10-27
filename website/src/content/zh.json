@@ -725,6 +725,11 @@
           "name": "Ruocheng Wang",
           "url": "https://wang-ruocheng.github.io/",
           "avatar": {"src": "assets/friends/ruocheng-wang.jpg", "alt": "Ruocheng Wang 的主页头像", "width": 1136, "height": 1610}
+        },
+        {
+          "name": "Ke Lin",
+          "url": "https://kelin666.github.io/",
+          "avatar": {"src": "assets/friends/ke-lin.png", "alt": "Ke Lin 的主页头像", "width": 839, "height": 826}
         }
       ]
     },
